@@ -8,7 +8,7 @@ const HeroSection = () => {
         <Box 
             bg="#FEF8F3"
             pt={{ base: "140px", md: "180px" }}
-            pb={{ base: "80px", md: "100px", lg: "120px" }}
+            pb={{ base: "20px", md: "30px", lg: "40px" }}
             px={{ base: "20px", md: "40px", lg: "60px" }}
         >
             <Container maxW="1400px">
