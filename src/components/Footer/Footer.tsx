@@ -1,98 +1,78 @@
 "use client";
 
 import React from 'react';
-import { Box, Container, Text, Flex, Image, Link, Icon } from '@chakra-ui/react';
-import { FaGithub, FaDiscord } from 'react-icons/fa';
+import { Box, Container, Text, VStack, Image, Link, Icon, Button } from '@chakra-ui/react';
 import { FaXTwitter } from 'react-icons/fa6';
 
 const Footer = () => {
     return (
         <Box 
-            bg="#F5F5F5" 
-            py={{ base: "40px", md: "60px" }}
-            px={{ base: "20px", md: "40px", lg: "60px" }}
+            bg="#FEF8F3"
+            borderTop="1px solid"
+            borderColor="rgba(0,0,0,0.1)"
+            py={{ base: "60px", md: "80px" }}
+            px={{ base: "20px", md: "40px" }}
         >
-            <Container>
-                <Flex 
-                    direction={{ base: "column", md: "row" }}
-                    justify="space-between"
-                    align={{ base: "flex-start", md: "flex-start" }}
-                    gap={{ base: "30px", md: "40px" }}
-                >
-                    <Box maxW={{ base: "100%", md: "400px" }}>
-                        <Flex align="center" mb={8}>
-                            <Image 
-                                src="/assets/logo.png"
-                                alt="Flint"
-                                width="200px"
-                                fallback={
-                                  <Text fontSize="2xl" fontWeight="bold" fontFamily="heading">
-                                    🔥 FLINT
-                                  </Text>
-                                }
-                            />
-                        </Flex>
+            <Container maxW="600px">
+                <VStack spacing={{ base: 6, md: 8 }} align="center">
+                    <Image 
+                        src="/assets/FooterSectionImages/footerLogo.png"
+                        alt="Flint"
+                        w={{ base: "120px", md: "140px" }}
+                        h="auto"
+                    />
 
-                        <Text 
-                            fontSize={{ base: "14px", md: "15px" }}
-                            lineHeight="1.4"
-                            mb={4}
-                            color="black"
+                    <Text 
+                        fontSize={{ base: "16px", md: "18px" }}
+                        fontWeight="400"
+                        color="#767676"
+                        fontFamily="EB Garamond"
+                        textAlign="center"
+                        lineHeight="1.6"
+                    >
+                        Flint is a community of builders brought together by{' '}
+                        <Link 
+                            href="https://spiral.xyz" 
+                            isExternal
+                            textDecoration="underline"
+                            color="#767676"
+                            _hover={{ opacity: 0.7 }}
                         >
-                            Flint is a community of vibecoders using new tech to build the next tech.
-                        </Text>
+                            Spiral
+                        </Link>
+                        , a division of Block that supports bitcoin adoption and open source development.
+                    </Text>
 
-                        <Text 
-                            fontSize={{ base: "14px", md: "15px" }}
-                            lineHeight="1.4"
+                    <Button
+                        bg="#FBB420"
+                        color="black"
+                        w={{ base: "200px", md: "220px" }}
+                        h="48px"
+                        fontSize={{ base: "16px", md: "18px" }}
+                        fontWeight="500"
+                        fontFamily="EB Garamond"
+                        borderRadius="0"
+                        _hover={{
+                            bg: "#E09612"
+                        }}
+                        transition="all 0.2s"
+                    >
+                        Members Only
+                    </Button>
+
+                    <Link 
+                        href="https://x.com/flint" 
+                        isExternal
+                        _hover={{ opacity: 0.7 }}
+                        transition="opacity 0.2s"
+                    >
+                        <Icon 
+                            as={FaXTwitter} 
+                            boxSize={{ base: "24px", md: "28px" }}
                             color="black"
-                        >
-                            Our members work with different tools and technologies, showcasing projects that help grow bitcoin and open source ecosystems.
-                        </Text>
-                        <Box mt={8}>
-                        <Flex gap={4} align="center">
-                            <Link 
-                                href="https://x.com/flint" 
-                                isExternal
-                                _hover={{ opacity: 0.7 }}
-                                transition="opacity 0.2s"
-                            >
-                                <Icon 
-                                    as={FaXTwitter} 
-                                    boxSize={{ base: "32px", md: "36px" }}
-                                    color="black"
-                                />
-                            </Link>
-
-                            <Link 
-                                href="https://github.com/flint" 
-                                isExternal
-                                _hover={{ opacity: 0.7 }}
-                                transition="opacity 0.2s"
-                            >
-                                <Icon 
-                                    as={FaGithub} 
-                                    boxSize={{ base: "32px", md: "36px" }}
-                                    color="black"
-                                />
-                            </Link>
-
-                            <Link 
-                                href="https://discord.gg/flint" 
-                                isExternal
-                                _hover={{ opacity: 0.7 }}
-                                transition="opacity 0.2s"
-                            >
-                                <Icon 
-                                    as={FaDiscord} 
-                                    boxSize={{ base: "32px", md: "36px" }}
-                                    color="black"
-                                />
-                            </Link>
-                        </Flex>
-                    </Box>
-                    </Box>
-                </Flex>
+                        />
+                    </Link>
+                </VStack>
             </Container>
         </Box>
     );
