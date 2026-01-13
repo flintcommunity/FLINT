@@ -39,7 +39,7 @@ const WhyApplySection = () => {
             <Container maxW="1200px">
                 <VStack spacing={{ base: 10, md: 12, lg: 14 }} align="center">
                     <Image
-                        src="/assets/CommonImages/SectionDivider.png"
+                        src="/assets/common/section-divider.png"
                         alt="Section divider"
                         w={{ base: "300px", sm: "400px", md: "500px", lg: "600px" }}
                         h="auto"
@@ -66,7 +66,7 @@ const WhyApplySection = () => {
                                 gap={{ base: 4, md: 5 }}
                             >
                                 <Image
-                                    src="/assets/CommonImages/BulletPointer.png"
+                                    src="/assets/common/bullet-pointer.png"
                                     alt="Bullet point"
                                     w={{ base: "24px", md: "28px", lg: "32px" }}
                                     h={{ base: "24px", md: "28px", lg: "32px" }}

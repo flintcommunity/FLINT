@@ -26,7 +26,7 @@ const HeroSection = () => {
                         mb={{ base: 6, md: 0 }}
                     >
                         <Image
-                            src="/assets/HeroImages/HeroImage.png"
+                            src="/assets/hero/hero-image.png"
                             alt="Flint and steel creating sparks"
                             w={{ base: "280px", sm: "340px", md: "550px", lg: "650px", xl: "700px" }}
                             h="auto"

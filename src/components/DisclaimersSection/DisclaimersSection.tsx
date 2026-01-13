@@ -19,7 +19,7 @@ const DisclaimersSection = () => {
             <Container maxW="900px">
                 <VStack spacing={{ base: 8, md: 10 }} align="center">
                     <Image
-                        src="/assets/DisclaimersSectionImages/pencilImage.png"
+                        src="/assets/disclaimers-section/pencil-image.png"
                         alt="Pencil"
                         w={{ base: "180px", sm: "220px", md: "280px", lg: "320px" }}
                         h="auto"

@@ -16,7 +16,7 @@ const Footer = () => {
             <Container maxW="600px">
                 <VStack spacing={{ base: 6, md: 8 }} align="center">
                     <Image 
-                        src="/assets/FooterSectionImages/footerLogo.png"
+                        src="/assets/footer/footer-logo.png"
                         alt="Flint"
                         w={{ base: "120px", md: "140px" }}
                         h="auto"
