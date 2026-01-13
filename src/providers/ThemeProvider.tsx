@@ -3,8 +3,8 @@ import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { Global, css } from "@emotion/react";
 
 const fonts = {
-  heading: "'Inter', sans-serif",
-  body: "'Inter', sans-serif",
+  heading: "'EB Garamond', serif",
+  body: "'EB Garamond', serif",
 };
 
 const breakpoints = {
@@ -18,12 +18,12 @@ const breakpoints = {
 
 const colors = {
   flint: {
-    50: "#FFF9F0",
-    100: "#FFF4E6",
+    50: "#FEF8F3",
+    100: "#FEF8F3",
     200: "#FFE8CC",
     300: "#FFDBB3",
     400: "#FFCD99",
-    500: "#FFB366",
+    500: "#FEF8F3",
     600: "#E69A4D",
     700: "#CC8033",
     800: "#B3661A",
@@ -46,12 +46,12 @@ const colors = {
 const components = {
   Heading: {
     baseStyle: {
-      fontFamily: "'Inter', sans-serif",
+      fontFamily: "'EB Garamond', serif",
     },
   },
   Button: {
     baseStyle: {
-      fontFamily: "'Inter', sans-serif",
+      fontFamily: "'EB Garamond', serif",
     },
   },
   Container: {
@@ -69,7 +69,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       {children}
       <Global
         styles={css`
-          @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+          @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700;800&display=swap');
           
           html, body {
           overflow-y: hidden;

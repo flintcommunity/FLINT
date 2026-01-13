@@ -1,71 +1,156 @@
+"use client";
+
 import React from 'react';
-import { Box, Container, Flex, Image, Link as ChakraLink } from '@chakra-ui/react';
+import { 
+  Box, 
+  Container, 
+  Flex, 
+  Image, 
+  Link as ChakraLink,
+  IconButton,
+  Drawer,
+  DrawerBody,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  VStack,
+  useDisclosure
+} from '@chakra-ui/react';
+import { HamburgerIcon } from '@chakra-ui/icons';
 
 const Header = () => {
+    const { isOpen, onOpen, onClose } = useDisclosure();
+
     return (
         <Box 
-            bg="white"
+            bg="#FEF8F3"
             position="fixed"
             top="0"
             left="0"
             right="0"
             zIndex="1000"
-            px={{ base: "20px", md: "40px", lg: "40px", xl: "60px" }}
+            py={{ base: "20px", md: "30px" }}
+            px={{ base: "20px", md: "40px" }}
         >
-            <Container>
+            <Container maxW="1200px">
                 <Flex
-                    as="nav"
+                    direction="column"
                     align="center"
-                    justify="space-between"
-                    wrap="nowrap" 
-                    padding={{ base: "1rem 0rem", md: "1.5rem 0rem" }}
-                    color="gray.800"
+                    gap={{ base: 4, md: 6 }}
                 >
-                <Flex align="center">
-                    <ChakraLink
-                        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                        cursor="pointer"
-                        _hover={{ opacity: 0.8 }}
+                    <Flex justify="space-between" align="center" w="100%">
+                        <Box flex="1" />
+                        <ChakraLink
+                            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                            cursor="pointer"
+                            _hover={{ opacity: 0.8 }}
+                            transition="opacity 0.2s"
+                        >
+                            <Image
+                                src="/assets/logo.png"
+                                alt="Flint Logo"
+                                h={{ base: "35px", sm: "40px", md: "65px", lg: "70px" }}
+                                w="auto"
+                            />
+                        </ChakraLink>
+                        <Flex flex="1" justify="flex-end">
+                            <IconButton
+                                display={{ base: "flex", md: "none" }}
+                                aria-label="Open menu"
+                                icon={<HamburgerIcon w={6} h={6} />}
+                                onClick={onOpen}
+                                variant="ghost"
+                                color="black"
+                                bg="transparent"
+                                _hover={{ bg: "rgba(0,0,0,0.05)" }}
+                            />
+                        </Flex>
+                    </Flex>
+
+                    <Flex 
+                        align="center" 
+                        gap={{ base: 6, md: 10, lg: 12 }}
+                        display={{ base: "none", md: "flex" }}
                     >
-                        <Image
-                            src="/assets/logo.png"
-                            alt="Flint Logo"
-                            h={{ base: "32px", sm: "36px", md: "50px", lg: "50px", xl: "60px" }}
-                            w="auto"
-                            fallback={
-                              <Box
-                                fontSize="2xl"
-                                fontWeight="bold"
-                                fontFamily="heading"
-                                color="flint.600"
-                              >
-                                🔥 FLINT
-                              </Box>
-                            }
-                        />
-                    </ChakraLink>
+                        <ChakraLink
+                            href="#why-join"
+                            fontSize={{ md: "18px", lg: "20px" }}
+                            fontWeight="400"
+                            color="black"
+                            textDecoration="none"
+                            _hover={{ opacity: 0.7 }}
+                            transition="opacity 0.2s"
+                        >
+                            Why join
+                        </ChakraLink>
+                        <ChakraLink
+                            href="#who-should-apply"
+                            fontSize={{ md: "18px", lg: "20px" }}
+                            fontWeight="400"
+                            color="black"
+                            textDecoration="none"
+                            _hover={{ opacity: 0.7 }}
+                            transition="opacity 0.2s"
+                        >
+                            Who should apply
+                        </ChakraLink>
+                        <ChakraLink
+                            href="#apply"
+                            fontSize={{ md: "18px", lg: "20px" }}
+                            fontWeight="400"
+                            color="black"
+                            textDecoration="none"
+                            _hover={{ opacity: 0.7 }}
+                            transition="opacity 0.2s"
+                        >
+                            Apply
+                        </ChakraLink>
+                    </Flex>
                 </Flex>
 
-                <Flex align="center">
-                    <ChakraLink
-                        href="#apply"
-                        display={{ base: "none", md: "block" }}
-                        fontSize={{ base: "14px", md: "16px", lg: "16px", xl: "18px" }}
-                        fontWeight="400"
-                        color="black"
-                        textDecoration="underline"
-                        sx={{
-                            scrollBehavior: 'smooth'
-                        }}
-                        _hover={{
-                            textDecoration: "none",
-                            opacity: 0.8
-                        }}
-                    >
-                        Apply to join
-                    </ChakraLink>
-                </Flex>
-                </Flex>
+                <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
+                    <DrawerOverlay />
+                    <DrawerContent bg="#FEF8F3">
+                        <DrawerCloseButton />
+                        <DrawerBody pt={20}>
+                            <VStack spacing={6} align="stretch">
+                                <ChakraLink
+                                    href="#why-join"
+                                    fontSize="20px"
+                                    fontWeight="400"
+                                    color="black"
+                                    textDecoration="none"
+                                    onClick={onClose}
+                                    _hover={{ opacity: 0.7 }}
+                                >
+                                    Why join
+                                </ChakraLink>
+                                <ChakraLink
+                                    href="#who-should-apply"
+                                    fontSize="20px"
+                                    fontWeight="400"
+                                    color="black"
+                                    textDecoration="none"
+                                    onClick={onClose}
+                                    _hover={{ opacity: 0.7 }}
+                                >
+                                    Who should apply
+                                </ChakraLink>
+                                <ChakraLink
+                                    href="#apply"
+                                    fontSize="20px"
+                                    fontWeight="400"
+                                    color="black"
+                                    textDecoration="none"
+                                    onClick={onClose}
+                                    _hover={{ opacity: 0.7 }}
+                                >
+                                    Apply
+                                </ChakraLink>
+                            </VStack>
+                        </DrawerBody>
+                    </DrawerContent>
+                </Drawer>
             </Container>
         </Box>
     );
