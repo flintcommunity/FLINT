@@ -71,7 +71,7 @@ const GatherSection = () => {
                                 gap={{ base: 4, md: 5 }}
                             >
                                 <Image
-                                    src="/assets/CommanImages/BulletPointer.png"
+                                    src="/assets/CommonImages/BulletPointer.png"
                                     alt="Bullet point"
                                     w={{ base: "24px", md: "28px", lg: "32px" }}
                                     h={{ base: "24px", md: "28px", lg: "32px" }}

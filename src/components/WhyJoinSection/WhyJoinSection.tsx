@@ -13,7 +13,7 @@ const WhyJoinSection = () => {
             <Container maxW="900px">
                 <VStack spacing={{ base: 8, md: 10 }} align="center">
                     <Image
-                        src="/assets/CommanImages/SectionDivider.png"
+                        src="/assets/CommonImages/SectionDivider.png"
                         alt="Section divider"
                         w={{ base: "300px", sm: "400px", md: "500px", lg: "600px" }}
                         h="auto"

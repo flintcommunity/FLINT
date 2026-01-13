@@ -7,6 +7,7 @@ import HeroSection from "@/components/HeroSection/HeroSection";
 import WhyJoinSection from "@/components/WhyJoinSection/WhyJoinSection";
 import GatherSection from "@/components/GatherSection/GatherSection";
 import WhyApplySection from "@/components/WhyApplySection/WhyApplySection";
+import ApplicationSection from "@/components/ApplicationSection/ApplicationSection";
 import Footer from "@/components/Footer/Footer";
 
 const Home = () => {
@@ -17,6 +18,7 @@ const Home = () => {
       <WhyJoinSection />
       <GatherSection />
       <WhyApplySection />
+      <ApplicationSection />
       <Footer />
     </Box>
   );
