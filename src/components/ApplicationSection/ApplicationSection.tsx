@@ -31,7 +31,7 @@ const ApplicationSection = () => {
             <Container maxW="1100px">
                 <VStack spacing={{ base: 10, md: 12, lg: 14 }} align="center">
                     <Image
-                        src="/assets/ApplicationSection/MembersOrder.png"
+                        src="/assets/ApplicationSectionImages/MembersOrder.png"
                         alt="Hammer"
                         w={{ base: "200px", sm: "250px", md: "350px", lg: "450px", xl: "500px" }}
                         h="auto"

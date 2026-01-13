@@ -8,6 +8,7 @@ import WhyJoinSection from "@/components/WhyJoinSection/WhyJoinSection";
 import GatherSection from "@/components/GatherSection/GatherSection";
 import WhyApplySection from "@/components/WhyApplySection/WhyApplySection";
 import ApplicationSection from "@/components/ApplicationSection/ApplicationSection";
+import DisclaimersSection from "@/components/DisclaimersSection/DisclaimersSection";
 import Footer from "@/components/Footer/Footer";
 
 const Home = () => {
@@ -19,6 +20,7 @@ const Home = () => {
       <GatherSection />
       <WhyApplySection />
       <ApplicationSection />
+      <DisclaimersSection />
       <Footer />
     </Box>
   );
