@@ -78,6 +78,10 @@ const Header = () => {
                             fontWeight="400"
                             color="black"
                             textDecoration="none"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                document.getElementById('why-join')?.scrollIntoView({ behavior: 'smooth' });
+                            }}
                             _hover={{ opacity: 0.7 }}
                             transition="opacity 0.2s"
                         >
@@ -89,6 +93,10 @@ const Header = () => {
                             fontWeight="400"
                             color="black"
                             textDecoration="none"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                document.getElementById('who-should-apply')?.scrollIntoView({ behavior: 'smooth' });
+                            }}
                             _hover={{ opacity: 0.7 }}
                             transition="opacity 0.2s"
                         >
@@ -100,6 +108,10 @@ const Header = () => {
                             fontWeight="400"
                             color="black"
                             textDecoration="none"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                document.getElementById('apply')?.scrollIntoView({ behavior: 'smooth' });
+                            }}
                             _hover={{ opacity: 0.7 }}
                             transition="opacity 0.2s"
                         >
@@ -120,7 +132,13 @@ const Header = () => {
                                     fontWeight="400"
                                     color="black"
                                     textDecoration="none"
-                                    onClick={onClose}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        onClose();
+                                        setTimeout(() => {
+                                            document.getElementById('why-join')?.scrollIntoView({ behavior: 'smooth' });
+                                        }, 100);
+                                    }}
                                     _hover={{ opacity: 0.7 }}
                                 >
                                     Why join
@@ -131,7 +149,13 @@ const Header = () => {
                                     fontWeight="400"
                                     color="black"
                                     textDecoration="none"
-                                    onClick={onClose}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        onClose();
+                                        setTimeout(() => {
+                                            document.getElementById('who-should-apply')?.scrollIntoView({ behavior: 'smooth' });
+                                        }, 100);
+                                    }}
                                     _hover={{ opacity: 0.7 }}
                                 >
                                     Who should apply
@@ -142,7 +166,13 @@ const Header = () => {
                                     fontWeight="400"
                                     color="black"
                                     textDecoration="none"
-                                    onClick={onClose}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        onClose();
+                                        setTimeout(() => {
+                                            document.getElementById('apply')?.scrollIntoView({ behavior: 'smooth' });
+                                        }, 100);
+                                    }}
                                     _hover={{ opacity: 0.7 }}
                                 >
                                     Apply

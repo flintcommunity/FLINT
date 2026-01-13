@@ -71,7 +71,12 @@ export function Providers({ children }: { children: React.ReactNode }) {
         styles={css`
           @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700;800&display=swap');
           
-          html, body {
+          html {
+          scroll-behavior: smooth;
+          scroll-padding-top: 150px;
+          }
+
+          body {
           overflow-y: hidden;
           overflow-y: auto;
           scrollbar-width: none;

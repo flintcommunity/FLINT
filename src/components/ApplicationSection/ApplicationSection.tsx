@@ -24,9 +24,11 @@ const ApplicationSection = () => {
     return (
         <Box 
             bg="#FEF8F3"
-            py={{ base: "60px", md: "80px", lg: "100px" }}
+            pt={{ base: "160px", md: "200px" }}
+            pb={{ base: "60px", md: "80px", lg: "100px" }}
             px={{ base: "20px", md: "40px" }}
             id="apply"
+            mt={{ base: "-100px", md: "-130px" }}
         >
             <Container maxW="1100px">
                 <VStack spacing={{ base: 10, md: 12, lg: 14 }} align="center">

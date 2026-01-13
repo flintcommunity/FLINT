@@ -60,18 +60,11 @@ const Footer = () => {
                         Members Only
                     </Button>
 
-                    <Link 
-                        href="https://x.com/flint" 
-                        isExternal
-                        _hover={{ opacity: 0.7 }}
-                        transition="opacity 0.2s"
-                    >
-                        <Icon 
-                            as={FaXTwitter} 
-                            boxSize={{ base: "24px", md: "28px" }}
-                            color="black"
-                        />
-                    </Link>
+                    <Icon 
+                        as={FaXTwitter} 
+                        boxSize={{ base: "24px", md: "28px" }}
+                        color="black"
+                    />
                 </VStack>
             </Container>
         </Box>

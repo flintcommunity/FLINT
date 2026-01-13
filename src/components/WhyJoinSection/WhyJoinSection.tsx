@@ -7,8 +7,11 @@ const WhyJoinSection = () => {
     return (
         <Box 
             bg="#FEF8F3"
-            py={{ base: "20px", md: "30px", lg: "40px" }}
+            pt={{ base: "120px", md: "150px" }}
+            pb={{ base: "20px", md: "30px", lg: "40px" }}
             px={{ base: "20px", md: "40px" }}
+            id="why-join"
+            mt={{ base: "-100px", md: "-130px" }}
         >
             <Container maxW="900px">
                 <VStack spacing={{ base: 8, md: 10 }} align="center">
