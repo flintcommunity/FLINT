@@ -41,7 +41,7 @@ const WhyApplySection = () => {
                     <Image
                         src="/assets/common/section-divider.png"
                         alt="Section divider"
-                        w={{ base: "300px", sm: "400px", md: "500px", lg: "600px" }}
+                        w={{ base: "300px", sm: "400px", md: "400px", lg: "500px" }}
                         h="auto"
                     />
 
@@ -68,29 +68,31 @@ const WhyApplySection = () => {
                                 <Image
                                     src="/assets/common/bullet-pointer.png"
                                     alt="Bullet point"
-                                    w={{ base: "24px", md: "28px", lg: "32px" }}
-                                    h={{ base: "24px", md: "28px", lg: "32px" }}
+                                    w={{ base: "35px", md: "42px", lg: "49px" }}
+                                    h={{ base: "32px", md: "38px", lg: "44px" }}
+                                    aspectRatio="49/44"
                                     flexShrink={0}
                                     mt={1}
                                 />
-                                <Box flex="1">
+                                <Box flex="1" maxW={{ base: "100%", md: "674px" }}>
                                     <Heading
                                         as="h3"
                                         fontSize={{ base: "20px", md: "22px", lg: "24px" }}
                                         fontWeight="700"
                                         color="#767676"
                                         fontFamily="EB Garamond"
-                                        mb={2}
+                                        mb={3}
                                         lineHeight="normal"
                                     >
                                         {item.title}
                                     </Heading>
                                     <Text
-                                        fontSize={{ base: "16px", md: "18px", lg: "20px" }}
+                                        fontSize={{ base: "20px", md: "22px", lg: "24px" }}
                                         fontWeight="400"
                                         color="#767676"
                                         fontFamily="EB Garamond"
-                                        lineHeight="1.6"
+                                        lineHeight="normal"
+                                        textAlign="justify"
                                     >
                                         {item.description}
                                     </Text>

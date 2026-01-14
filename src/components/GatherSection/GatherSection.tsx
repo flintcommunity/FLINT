@@ -50,19 +50,36 @@ const GatherSection = () => {
                         Gather round and join Flint.
                     </Heading>
 
-                    <Text
-                        fontSize={{ base: "18px", md: "20px", lg: "22px" }}
-                        fontWeight="400"
-                        color="#767676"
-                        fontFamily="EB Garamond"
-                        textAlign="center"
-                        lineHeight="1.6"
-                        maxW="800px"
-                    >
-                        It's easier than ever to be a supercharged solo builder, so why do you need Flint?
-                    </Text>
-
                     <VStack spacing={{ base: 8, md: 10 }} align="stretch" w="100%" maxW="900px">
+                        <Flex
+                            direction="row"
+                            align="flex-start"
+                            gap={{ base: 4, md: 5 }}
+                        >
+                            <Image
+                                src="/assets/common/bullet-pointer.png"
+                                alt=""
+                                w={{ base: "35px", md: "42px", lg: "49px" }}
+                                h={{ base: "32px", md: "38px", lg: "44px" }}
+                                aspectRatio="49/44"
+                                flexShrink={0}
+                                mt={1}
+                                opacity={0}
+                                visibility="hidden"
+                            />
+                            <Text
+                                fontSize={{ base: "20px", md: "22px", lg: "24px" }}
+                                fontWeight="400"
+                                color="#767676"
+                                fontFamily="EB Garamond"
+                                textAlign="justify"
+                                lineHeight="normal"
+                                maxW={{ base: "100%", md: "674px" }}
+                                flex="1"
+                            >
+                                It's easier than ever to be a supercharged solo builder, so why do you need Flint?
+                            </Text>
+                        </Flex>
                         {benefits.map((benefit, index) => (
                             <Flex
                                 key={index}
@@ -73,29 +90,31 @@ const GatherSection = () => {
                                 <Image
                                     src="/assets/common/bullet-pointer.png"
                                     alt="Bullet point"
-                                    w={{ base: "24px", md: "28px", lg: "32px" }}
-                                    h={{ base: "24px", md: "28px", lg: "32px" }}
+                                    w={{ base: "35px", md: "42px", lg: "49px" }}
+                                    h={{ base: "32px", md: "38px", lg: "44px" }}
+                                    aspectRatio="49/44"
                                     flexShrink={0}
                                     mt={1}
                                 />
-                                <Box flex="1">
+                                <Box flex="1" maxW={{ base: "100%", md: "674px" }}>
                                     <Heading
                                         as="h3"
                                         fontSize={{ base: "20px", md: "22px", lg: "24px" }}
                                         fontWeight="700"
                                         color="#767676"
                                         fontFamily="EB Garamond"
-                                        mb={2}
+                                        mb={3}
                                         lineHeight="normal"
                                     >
                                         {benefit.title}
                                     </Heading>
                                     <Text
-                                        fontSize={{ base: "16px", md: "18px", lg: "20px" }}
+                                        fontSize={{ base: "20px", md: "22px", lg: "24px" }}
                                         fontWeight="400"
                                         color="#767676"
                                         fontFamily="EB Garamond"
-                                        lineHeight="1.6"
+                                        lineHeight="normal"
+                                        textAlign="justify"
                                     >
                                         {benefit.description}
                                     </Text>

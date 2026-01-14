@@ -60,13 +60,13 @@ const HeroSection = () => {
                         </Heading>
 
                         <Text
-                            fontSize={{ base: "18px", sm: "20px", md: "28px" }}
+                            fontSize={{ base: "22px", sm: "24px", md: "28px" }}
                             fontWeight="400"
                             color="#767676"
                             fontFamily="EB Garamond"
                             mb={{ base: 6, md: 10 }}
                             lineHeight="normal"
-                            px={{ base: 2, md: 0 }}
+                            maxW={{ base: "100%", md: "470px" }}
                         >
                             Flint is a community of vibecoders using new tech to build the next tech.
                         </Text>
@@ -75,10 +75,14 @@ const HeroSection = () => {
                             as="a"
                             href="#apply"
                             bg="#FBB420"
-                            color="black"
+                            color="#000"
+                            fontSize="18px"
+                            fontWeight="500"
+                            fontFamily="EB Garamond"
                             w={{ base: "240px", sm: "280px", md: "367px" }}
                             h="58px"
                             borderRadius="0"
+                            lineHeight="normal"
                             _hover={{
                                 bg: "#E09612"
                             }}

@@ -14,11 +14,11 @@ const WhyJoinSection = () => {
             mt={{ base: "-100px", md: "-130px" }}
         >
             <Container maxW="900px">
-                <VStack spacing={{ base: 8, md: 10 }} align="center">
+                <VStack spacing={{ base: 6, md: 6 }} align="center">
                     <Image
                         src="/assets/common/section-divider.png"
                         alt="Section divider"
-                        w={{ base: "300px", sm: "400px", md: "500px", lg: "600px" }}
+                        w={{ base: "300px", sm: "400px", md: "400px", lg: "500px" }}
                         h="auto"
                     />
 
@@ -34,27 +34,29 @@ const WhyJoinSection = () => {
                         Lighting the way with vibes.
                     </Heading>
 
-                    <VStack spacing={{ base: 5, md: 6 }} align="center">
+                    <VStack spacing={{ base: 6, md: 8 }} align="center" w="100%">
                         <Text
-                            fontSize={{ base: "18px", md: "20px", lg: "22px" }}
+                            fontSize={{ base: "20px", md: "22px", lg: "24px" }}
                             fontWeight="400"
                             color="#767676"
                             fontFamily="EB Garamond"
-                            textAlign="center"
-                            lineHeight="1.6"
-                            maxW="800px"
+                            textAlign="justify"
+                            lineHeight="normal"
+                            w={{ base: "100%", md: "715px" }}
+                            maxW="715px"
                         >
                             Flint welcomes product builders who push the boundaries of how things are made using vibecoding, bitcoin, AI, and other emerging technologies.
                         </Text>
 
                         <Text
-                            fontSize={{ base: "18px", md: "20px", lg: "22px" }}
+                            fontSize={{ base: "20px", md: "22px", lg: "24px" }}
                             fontWeight="400"
                             color="#767676"
                             fontFamily="EB Garamond"
-                            textAlign="center"
-                            lineHeight="1.6"
-                            maxW="800px"
+                            textAlign="justify"
+                            lineHeight="normal"
+                            w={{ base: "100%", md: "715px" }}
+                            maxW="715px"
                         >
                             Our members work with different tools and tech stacks but share a common desire to build better, faster, and brighter. We are one another's first users and champions, showcasing projects we believe will light the way forward for all.
                         </Text>

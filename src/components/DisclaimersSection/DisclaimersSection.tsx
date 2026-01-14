@@ -16,7 +16,7 @@ const DisclaimersSection = () => {
             py={{ base: "60px", md: "80px", lg: "100px" }}
             px={{ base: "20px", md: "40px" }}
         >
-            <Container maxW="900px">
+            <Container maxW="1200px">
                 <VStack spacing={{ base: 8, md: 10 }} align="center">
                     <Image
                         src="/assets/disclaimers-section/pencil-image.png"
@@ -27,12 +27,14 @@ const DisclaimersSection = () => {
 
                     <Heading
                         as="h2"
-                        fontSize={{ base: "28px", sm: "32px", md: "36px", lg: "40px" }}
-                        fontWeight="500"
-                        color="#000"
+                        fontSize={{ base: "20px", md: "22px", lg: "24px" }}
+                        fontWeight="700"
+                        color="#767676"
                         fontFamily="EB Garamond"
-                        textAlign="center"
+                        textAlign="left"
                         lineHeight="normal"
+                        maxW={{ base: "100%", md: "728px" }}
+                        w={{ base: "100%", md: "728px" }}
                     >
                         Disclaimers
                     </Heading>
@@ -41,14 +43,15 @@ const DisclaimersSection = () => {
                         {disclaimers.map((disclaimer, index) => (
                             <Text
                                 key={index}
-                                fontSize={{ base: "16px", md: "18px", lg: "20px" }}
+                                fontSize={{ base: "20px", md: "22px", lg: "24px" }}
                                 fontWeight="400"
                                 color="#767676"
                                 fontFamily="EB Garamond"
-                                textAlign="center"
-                                lineHeight="1.6"
+                                textAlign="left"
+                                lineHeight="normal"
                                 fontStyle="italic"
-                                maxW="800px"
+                                maxW={{ base: "100%", md: "728px" }}
+                                w={{ base: "100%", md: "728px" }}
                             >
                                 {disclaimer}
                             </Text>
