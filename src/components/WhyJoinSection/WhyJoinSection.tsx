@@ -7,8 +7,8 @@ const WhyJoinSection = () => {
     return (
         <Box 
             bg="#FEF8F3"
-            pt={{ base: "120px", md: "150px" }}
-            pb={{ base: "20px", md: "30px", lg: "40px" }}
+            pt={{ base: "160px", md: "200px" }}
+            pb={{ base: "60px", md: "80px", lg: "100px" }}
             px={{ base: "20px", md: "40px" }}
             id="why-join"
             mt={{ base: "-100px", md: "-130px" }}

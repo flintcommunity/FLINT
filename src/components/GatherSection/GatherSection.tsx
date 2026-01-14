@@ -27,7 +27,7 @@ const GatherSection = () => {
         <Box 
             bg="#FEF8F3"
             py={{ base: "60px", md: "80px", lg: "100px" }}
-            px={{ base: "20px", md: "40px" }}
+            px={{ base: "20px", md: "40px", lg: "60px" }}
         >
             <Container maxW="1200px">
                 <VStack spacing={{ base: 10, md: 12, lg: 14 }} align="center">
