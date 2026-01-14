@@ -57,7 +57,7 @@ const WhyApplySection = () => {
                         Who should apply.
                     </Heading>
 
-                    <VStack spacing={{ base: 8, md: 10 }} align="stretch" w="100%" maxW="900px">
+                    <VStack spacing={{ base: 8, md: 10 }} align="stretch" w="100%" maxW="800px">
                         {criteria.map((item, index) => (
                             <Flex
                                 key={index}

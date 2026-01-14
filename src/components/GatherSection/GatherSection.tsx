@@ -50,7 +50,7 @@ const GatherSection = () => {
                         Gather round and join Flint.
                     </Heading>
 
-                    <VStack spacing={{ base: 8, md: 10 }} align="stretch" w="100%" maxW="900px">
+                    <VStack spacing={{ base: 8, md: 10 }} align="stretch" w="100%" maxW="800px">
                         <Flex
                             direction="row"
                             align="flex-start"

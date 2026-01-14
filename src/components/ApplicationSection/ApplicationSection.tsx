@@ -30,23 +30,25 @@ const ApplicationSection = () => {
             id="apply"
             mt={{ base: "-100px", md: "-130px" }}
         >
-            <Container maxW="1100px">
+            <Container maxW="1200px">
                 <VStack spacing={{ base: 10, md: 12, lg: 14 }} align="center">
                     <Image
                         src="/assets/application-section/members-order.png"
                         alt="Hammer"
-                        w={{ base: "200px", sm: "250px", md: "350px", lg: "450px", xl: "500px" }}
-                        h="auto"
+                        w={{ base: "180px", sm: "220px", md: "289px" }}
+                        h={{ base: "90px", sm: "110px", md: "145px" }}
+                        aspectRatio="289/145"
                     />
 
                     <Text
-                        fontSize={{ base: "18px", md: "20px", lg: "22px" }}
+                        fontSize={{ base: "20px", md: "22px", lg: "24px" }}
                         fontWeight="400"
                         color="#767676"
                         fontFamily="EB Garamond"
-                        textAlign="center"
-                        lineHeight="1.6"
-                        maxW="800px"
+                        textAlign="left"
+                        lineHeight="normal"
+                        maxW={{ base: "100%", md: "715px" }}
+                        w={{ base: "100%", md: "715px" }}
                     >
                         As with any community, Flint users get out what they put in. In order to make sure users benefit, we created a very short list of membership requirements:
                     </Text>
@@ -55,29 +57,33 @@ const ApplicationSection = () => {
                         templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}
                         gap={{ base: 8, md: 10, lg: 12 }}
                         w="100%"
-                        maxW="900px"
+                        maxW={{ base: "100%", md: "715px" }}
                     >
                         {requirements.map((req, index) => (
                             <GridItem key={index}>
-                                <VStack align={{ base: "center", md: "flex-start" }} spacing={3}>
+                                <VStack align="flex-start" spacing={3}>
                                     <Heading
                                         as="h3"
-                                        fontSize={{ base: "22px", md: "24px", lg: "26px" }}
+                                        fontSize={{ base: "20px", md: "22px", lg: "24px" }}
                                         fontWeight="700"
                                         color="#767676"
                                         fontFamily="EB Garamond"
                                         lineHeight="normal"
-                                        textAlign={{ base: "center", md: "left" }}
+                                        textAlign="left"
+                                        maxW={{ base: "100%", md: "307px" }}
+                                        w={{ base: "100%", md: "307px" }}
                                     >
                                         {req.title}
                                     </Heading>
                                     <Text
-                                        fontSize={{ base: "16px", md: "18px", lg: "20px" }}
+                                        fontSize={{ base: "20px", md: "22px", lg: "24px" }}
                                         fontWeight="400"
                                         color="#767676"
                                         fontFamily="EB Garamond"
-                                        lineHeight="1.6"
-                                        textAlign={{ base: "center", md: "left" }}
+                                        lineHeight="normal"
+                                        textAlign="left"
+                                        maxW={{ base: "100%", md: "307px" }}
+                                        w={{ base: "100%", md: "307px" }}
                                     >
                                         {req.description}
                                     </Text>
@@ -104,16 +110,19 @@ const ApplicationSection = () => {
 
                     <VStack spacing={4} align="center" w="100%" maxW="700px">
                         <Text
-                            fontSize={{ base: "18px", md: "20px", lg: "22px" }}
-                            fontWeight="500"
+                            fontSize={{ base: "20px", md: "22px", lg: "24px" }}
+                            fontWeight="400"
                             color="#767676"
                             fontFamily="EB Garamond"
-                            textAlign="center"
+                            textAlign="left"
+                            lineHeight="normal"
+                            maxW={{ base: "100%", md: "691px" }}
+                            w={{ base: "100%", md: "691px" }}
                         >
                             The process is simple:
                         </Text>
 
-                        <VStack spacing={3} align="flex-start" w="100%">
+                        <VStack spacing={3} align="center" w="100%">
                             {steps.map((step, index) => (
                                 <Text
                                     key={index}
@@ -123,6 +132,8 @@ const ApplicationSection = () => {
                                     fontFamily="EB Garamond"
                                     lineHeight="1.6"
                                     textAlign="left"
+                                    maxW={{ base: "100%", md: "691px" }}
+                                    w={{ base: "100%", md: "691px" }}
                                 >
                                     {index + 1}. {step}
                                 </Text>

@@ -13,7 +13,7 @@ const WhyJoinSection = () => {
             id="why-join"
             mt={{ base: "-100px", md: "-130px" }}
         >
-            <Container maxW="900px">
+            <Container maxW="1200px">
                 <VStack spacing={{ base: 6, md: 6 }} align="center">
                     <Image
                         src="/assets/common/section-divider.png"

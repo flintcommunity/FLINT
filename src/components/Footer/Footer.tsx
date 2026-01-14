@@ -28,7 +28,9 @@ const Footer = () => {
                         color="#767676"
                         fontFamily="EB Garamond"
                         textAlign="center"
-                        lineHeight="1.6"
+                        lineHeight="normal"
+                        maxW={{ base: "100%", md: "276px" }}
+                        w={{ base: "100%", md: "276px" }}
                     >
                         Flint is a community of builders brought together by{' '}
                         <Link 
@@ -65,6 +67,36 @@ const Footer = () => {
                         boxSize={{ base: "24px", md: "28px" }}
                         color="black"
                     />
+
+                    <Text 
+                        fontSize={{ base: "16px", md: "18px" }}
+                        fontWeight="400"
+                        color="#767676"
+                        fontFamily="EB Garamond"
+                        textAlign="center"
+                        lineHeight="normal"
+                        maxW={{ base: "100%", md: "318px" }}
+                        w={{ base: "100%", md: "318px" }}
+                    >
+                        Code and assets for the Flint site are available on{' '}
+                        <Link 
+                            href="https://github.com/Abhijay007/FLINT" 
+                            isExternal
+                            textDecoration="underline"
+                            textDecorationStyle="solid"
+                            textDecorationSkipInk="auto"
+                            textDecorationThickness="auto"
+                            textUnderlineOffset="auto"
+                            color="#767676"
+                            fontFamily="EB Garamond"
+                            fontSize={{ base: "16px", md: "18px" }}
+                            fontWeight="400"
+                            _hover={{ opacity: 0.7 }}
+                        >
+                            Github
+                        </Link>
+                        {' '}under an MIT License.
+                    </Text>
                 </VStack>
             </Container>
         </Box>
