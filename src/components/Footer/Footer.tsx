@@ -80,13 +80,9 @@ const Footer = () => {
                     >
                         Code and assets for the Flint site are available on{' '}
                         <Link 
-                            href="https://github.com/Abhijay007/FLINT" 
+                            href="https://github.com/flintcommunity/FLINT" 
                             isExternal
                             textDecoration="underline"
-                            textDecorationStyle="solid"
-                            textDecorationSkipInk="auto"
-                            textDecorationThickness="auto"
-                            textUnderlineOffset="auto"
                             color="#767676"
                             fontFamily="EB Garamond"
                             fontSize={{ base: "16px", md: "18px" }}
