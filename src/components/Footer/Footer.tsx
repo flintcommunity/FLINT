@@ -10,7 +10,7 @@ const Footer = () => {
             bg="#FEF8F3"
             borderTop="1px solid"
             borderColor="rgba(0,0,0,0.1)"
-            py={{ base: "60px", md: "80px" }}
+            py={{ base: "50px", md: "55px", lg: "65px" }}
             px={{ base: "20px", md: "40px" }}
         >
             <Container maxW="600px">

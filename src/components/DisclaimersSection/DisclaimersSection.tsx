@@ -13,7 +13,7 @@ const DisclaimersSection = () => {
     return (
         <Box 
             bg="#FEF8F3"
-            py={{ base: "60px", md: "80px", lg: "100px" }}
+            py={{ base: "50px", md: "55px", lg: "65px" }}
             px={{ base: "20px", md: "40px", lg: "60px" }}
         >
             <Container maxW="1200px">

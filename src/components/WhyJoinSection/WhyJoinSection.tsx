@@ -7,18 +7,18 @@ const WhyJoinSection = () => {
     return (
         <Box 
             bg="#FEF8F3"
-            pt={{ base: "160px", md: "200px" }}
-            pb={{ base: "60px", md: "80px", lg: "100px" }}
+            pt={{ base: "130px", md: "155px" }}
+            pb={{ base: "50px", md: "55px", lg: "65px" }}
             px={{ base: "20px", md: "40px" }}
             id="why-join"
-            mt={{ base: "-100px", md: "-130px" }}
+            mt={{ base: "-90px", md: "-105px" }}
         >
             <Container maxW="1200px">
                 <VStack spacing={{ base: 6, md: 6 }} align="center">
                     <Image
                         src="/assets/common/section-divider.png"
                         alt="Section divider"
-                        w={{ base: "300px", sm: "400px", md: "400px", lg: "500px" }}
+                        w={{ base: "280px", sm: "350px", md: "360px", lg: "420px" }}
                         h="auto"
                     />
 
