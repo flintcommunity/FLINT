@@ -30,7 +30,7 @@ const MemberWelcome = ({ memberName, daysActive, thingsShipped }: MemberWelcomeP
                         textAlign="center"
                     >
                         Here's your Field Guide,{' '}
-                        <Link href="/dashboard" passHref legacyBehavior>
+                        <Link href="/profile" passHref legacyBehavior>
                             <ChakraLink
                                 textDecoration="underline"
                                 textDecorationColor="#000"
