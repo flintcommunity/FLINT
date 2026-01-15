@@ -1,8 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 
+function getBaseUrl() {
+  if (process.env.REPLIT_DEV_DOMAIN) {
+    return `https://${process.env.REPLIT_DEV_DOMAIN}`;
+  }
+  return "http://localhost:5000";
+}
+
 export async function GET(request: NextRequest) {
+  const baseUrl = getBaseUrl();
   const clientId = process.env.DISCORD_CLIENT_ID;
-  const redirectUri = `${process.env.REPLIT_DEV_DOMAIN ? `https://${process.env.REPLIT_DEV_DOMAIN}` : 'http://localhost:5000'}/api/auth/discord/callback`;
+  const redirectUri = `${baseUrl}/api/auth/discord/callback`;
   
   if (!clientId) {
     return NextResponse.json({ error: "Discord client ID not configured" }, { status: 500 });
@@ -11,7 +19,7 @@ export async function GET(request: NextRequest) {
   const stateToken = request.nextUrl.searchParams.get("state");
   
   if (!stateToken) {
-    return NextResponse.redirect(new URL("/signup?error=missing_state", request.url));
+    return NextResponse.redirect(`${baseUrl}/signup?error=missing_state`);
   }
   
   const scopes = ["identify", "email"];
