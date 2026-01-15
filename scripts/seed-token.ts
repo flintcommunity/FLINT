@@ -3,7 +3,7 @@ import { db } from "../server/db";
 import { inviteTokens } from "../shared/schema";
 
 async function seedToken() {
-  const token = "SPARKSOMETHING";
+  const token = "GOODFLINTSONLY";
   const tokenHash = await bcrypt.hash(token, 10);
   
   try {
