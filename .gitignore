@@ -38,3 +38,6 @@ next-env.d.ts
 .replit
 replit.nix
 .upm
+
+# attached assets (screenshots, mockups)
+attached_assets/
