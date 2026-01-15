@@ -30,11 +30,10 @@ const WhyApplySection = () => {
     return (
         <Box 
             bg="#FEF8F3"
-            pt={{ base: "130px", md: "155px" }}
+            pt={{ base: "50px", md: "55px", lg: "65px" }}
             pb={{ base: "50px", md: "55px", lg: "65px" }}
             px={{ base: "20px", md: "40px", lg: "60px" }}
             id="who-should-apply"
-            mt={{ base: "-90px", md: "-105px" }}
         >
             <Container maxW="1200px">
                 <VStack spacing={{ base: 6, md: 6 }} align="center">

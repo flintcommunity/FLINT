@@ -28,6 +28,7 @@ const GatherSection = () => {
             bg="#FEF8F3"
             py={{ base: "50px", md: "55px", lg: "65px" }}
             px={{ base: "20px", md: "40px", lg: "60px" }}
+            id="why-join"
         >
             <Container maxW="1200px">
                 <VStack spacing={{ base: 10, md: 12, lg: 14 }} align="center">

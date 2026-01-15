@@ -24,11 +24,6 @@ const Header = () => {
     return (
         <Box 
             bg="#FEF8F3"
-            position="fixed"
-            top="0"
-            left="0"
-            right="0"
-            zIndex="1000"
             py={{ base: "20px", md: "30px" }}
             px={{ base: "20px", md: "40px" }}
         >
@@ -63,6 +58,7 @@ const Header = () => {
                                 color="black"
                                 bg="transparent"
                                 _hover={{ bg: "rgba(0,0,0,0.05)" }}
+                                mr={{ base: "-8px", sm: "0" }}
                             />
                         </Flex>
                     </Flex>

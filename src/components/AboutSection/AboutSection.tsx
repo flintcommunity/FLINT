@@ -3,15 +3,13 @@
 import React from 'react';
 import { Box, Container, Heading, Text, Image, VStack } from '@chakra-ui/react';
 
-const WhyJoinSection = () => {
+const AboutSection = () => {
     return (
         <Box 
             bg="#FEF8F3"
-            pt={{ base: "130px", md: "155px" }}
+            pt={{ base: "50px", md: "55px", lg: "65px" }}
             pb={{ base: "50px", md: "55px", lg: "65px" }}
             px={{ base: "20px", md: "40px" }}
-            id="why-join"
-            mt={{ base: "-90px", md: "-105px" }}
         >
             <Container maxW="1200px">
                 <VStack spacing={{ base: 6, md: 6 }} align="center">
@@ -67,4 +65,4 @@ const WhyJoinSection = () => {
     );
 };
 
-export default WhyJoinSection;
+export default AboutSection;
