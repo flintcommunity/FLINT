@@ -17,9 +17,56 @@ import {
   useDisclosure
 } from '@chakra-ui/react';
 import { HamburgerIcon } from '@chakra-ui/icons';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
-const Header = () => {
+interface NavItem {
+    label: string;
+    href: string;
+    isExternal?: boolean;
+    scrollTo?: string;
+}
+
+interface HeaderProps {
+    navItems?: NavItem[];
+}
+
+const defaultNavItems: NavItem[] = [
+    { label: "Why join", href: "#why-join", scrollTo: "why-join" },
+    { label: "Who should apply", href: "#who-should-apply", scrollTo: "who-should-apply" },
+    { label: "Apply", href: "#apply", scrollTo: "apply" }
+];
+
+const Header = ({ navItems = defaultNavItems }: HeaderProps) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const pathname = usePathname();
+
+    const handleNavClick = (e: React.MouseEvent, item: NavItem) => {
+        if (item.scrollTo) {
+            e.preventDefault();
+            const element = document.getElementById(item.scrollTo);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    };
+
+    const handleMobileNavClick = (e: React.MouseEvent, item: NavItem) => {
+        if (item.scrollTo) {
+            e.preventDefault();
+            onClose();
+            setTimeout(() => {
+                if (item.scrollTo) {
+                    const element = document.getElementById(item.scrollTo);
+                    if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            }, 100);
+        } else {
+            onClose();
+        }
+    };
 
     return (
         <Box 
@@ -35,19 +82,19 @@ const Header = () => {
                 >
                     <Flex justify="space-between" align="center" w="100%">
                         <Box flex="1" />
-                        <ChakraLink
-                            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                            cursor="pointer"
-                            _hover={{ opacity: 0.8 }}
-                            transition="opacity 0.2s"
-                        >
-                            <Image
-                                src="/assets/logo.png"
-                                alt="Flint Logo"
-                                h={{ base: "35px", sm: "40px", md: "65px", lg: "70px" }}
-                                w="auto"
-                            />
-                        </ChakraLink>
+                        <Link href="/" passHref legacyBehavior>
+                            <ChakraLink
+                                _hover={{ opacity: 0.8 }}
+                                transition="opacity 0.2s"
+                            >
+                                <Image
+                                    src="/assets/logo.png"
+                                    alt="Flint Logo"
+                                    h={{ base: "35px", sm: "40px", md: "65px", lg: "70px" }}
+                                    w="auto"
+                                />
+                            </ChakraLink>
+                        </Link>
                         <Flex flex="1" justify="flex-end">
                             <IconButton
                                 display={{ base: "flex", md: "none" }}
@@ -68,84 +115,78 @@ const Header = () => {
                         gap={{ base: 6, md: 12, lg: 24 }}
                         display={{ base: "none", md: "flex" }}
                     >
-                        <ChakraLink
-                            href="#why-join"
-                            fontSize={{ md: "18px", lg: "20px" }}
-                            fontWeight="400"
-                            color="black"
-                            textDecoration="none"
-                            position="relative"
-                            onClick={(e) => {
-                                e.preventDefault();
-                                document.getElementById('why-join')?.scrollIntoView({ behavior: 'smooth' });
-                            }}
-                            _hover={{ 
-                                _after: {
-                                    content: '""',
-                                    position: 'absolute',
-                                    bottom: '-4px',
-                                    left: 0,
-                                    right: 0,
-                                    height: '2px',
-                                    bg: '#FBB420'
-                                }
-                            }}
-                            transition="all 0.2s"
-                        >
-                            Why join
-                        </ChakraLink>
-                        <ChakraLink
-                            href="#who-should-apply"
-                            fontSize={{ md: "18px", lg: "20px" }}
-                            fontWeight="400"
-                            color="black"
-                            textDecoration="none"
-                            position="relative"
-                            onClick={(e) => {
-                                e.preventDefault();
-                                document.getElementById('who-should-apply')?.scrollIntoView({ behavior: 'smooth' });
-                            }}
-                            _hover={{ 
-                                _after: {
-                                    content: '""',
-                                    position: 'absolute',
-                                    bottom: '-4px',
-                                    left: 0,
-                                    right: 0,
-                                    height: '2px',
-                                    bg: '#FBB420'
-                                }
-                            }}
-                            transition="all 0.2s"
-                        >
-                            Who should apply
-                        </ChakraLink>
-                        <ChakraLink
-                            href="#apply"
-                            fontSize={{ md: "18px", lg: "20px" }}
-                            fontWeight="400"
-                            color="black"
-                            textDecoration="none"
-                            position="relative"
-                            onClick={(e) => {
-                                e.preventDefault();
-                                document.getElementById('apply')?.scrollIntoView({ behavior: 'smooth' });
-                            }}
-                            _hover={{ 
-                                _after: {
-                                    content: '""',
-                                    position: 'absolute',
-                                    bottom: '-4px',
-                                    left: 0,
-                                    right: 0,
-                                    height: '2px',
-                                    bg: '#FBB420'
-                                }
-                            }}
-                            transition="all 0.2s"
-                        >
-                            Apply
-                        </ChakraLink>
+                        {navItems.map((item, index) => {
+                            const isActive = pathname === item.href;
+                            return item.isExternal ? (
+                                <ChakraLink
+                                    key={index}
+                                    href={item.href}
+                                    isExternal
+                                    fontSize={{ md: "18px", lg: "20px" }}
+                                    fontWeight="400"
+                                    color="black"
+                                    textDecoration="none"
+                                    position="relative"
+                                    _after={isActive ? {
+                                        content: '""',
+                                        position: 'absolute',
+                                        bottom: '-4px',
+                                        left: 0,
+                                        right: 0,
+                                        height: '2px',
+                                        bg: '#FBB420'
+                                    } : undefined}
+                                    _hover={{ 
+                                        _after: {
+                                            content: '""',
+                                            position: 'absolute',
+                                            bottom: '-4px',
+                                            left: 0,
+                                            right: 0,
+                                            height: '2px',
+                                            bg: '#FBB420'
+                                        }
+                                    }}
+                                    transition="all 0.2s"
+                                >
+                                    {item.label}
+                                </ChakraLink>
+                            ) : (
+                                <Link key={index} href={item.href} passHref legacyBehavior>
+                                    <ChakraLink
+                                        fontSize={{ md: "18px", lg: "20px" }}
+                                        fontWeight="400"
+                                        color="black"
+                                        textDecoration="none"
+                                        position="relative"
+                                        onClick={(e) => handleNavClick(e, item)}
+                                        _after={isActive ? {
+                                            content: '""',
+                                            position: 'absolute',
+                                            bottom: '-4px',
+                                            left: 0,
+                                            right: 0,
+                                            height: '2px',
+                                            bg: '#FBB420'
+                                        } : undefined}
+                                        _hover={{ 
+                                            _after: {
+                                                content: '""',
+                                                position: 'absolute',
+                                                bottom: '-4px',
+                                                left: 0,
+                                                right: 0,
+                                                height: '2px',
+                                                bg: '#FBB420'
+                                            }
+                                        }}
+                                        transition="all 0.2s"
+                                    >
+                                        {item.label}
+                                    </ChakraLink>
+                                </Link>
+                            );
+                        })}
                     </Flex>
                 </Flex>
 
@@ -155,93 +196,79 @@ const Header = () => {
                         <DrawerCloseButton />
                         <DrawerBody pt={20}>
                             <VStack spacing={6} align="stretch">
-                                <ChakraLink
-                                    href="#why-join"
-                                    fontSize="20px"
-                                    fontWeight="400"
-                                    color="black"
-                                    textDecoration="none"
-                                    position="relative"
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        onClose();
-                                        setTimeout(() => {
-                                            document.getElementById('why-join')?.scrollIntoView({ behavior: 'smooth' });
-                                        }, 100);
-                                    }}
-                                    _hover={{ 
-                                        _after: {
-                                            content: '""',
-                                            position: 'absolute',
-                                            bottom: '-4px',
-                                            left: 0,
-                                            right: 0,
-                                            height: '2px',
-                                            bg: '#FBB420'
-                                        }
-                                    }}
-                                    transition="all 0.2s"
-                                >
-                                    Why join
-                                </ChakraLink>
-                                <ChakraLink
-                                    href="#who-should-apply"
-                                    fontSize="20px"
-                                    fontWeight="400"
-                                    color="black"
-                                    textDecoration="none"
-                                    position="relative"
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        onClose();
-                                        setTimeout(() => {
-                                            document.getElementById('who-should-apply')?.scrollIntoView({ behavior: 'smooth' });
-                                        }, 100);
-                                    }}
-                                    _hover={{ 
-                                        _after: {
-                                            content: '""',
-                                            position: 'absolute',
-                                            bottom: '-4px',
-                                            left: 0,
-                                            right: 0,
-                                            height: '2px',
-                                            bg: '#FBB420'
-                                        }
-                                    }}
-                                    transition="all 0.2s"
-                                >
-                                    Who should apply
-                                </ChakraLink>
-                                <ChakraLink
-                                    href="#apply"
-                                    fontSize="20px"
-                                    fontWeight="400"
-                                    color="black"
-                                    textDecoration="none"
-                                    position="relative"
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        onClose();
-                                        setTimeout(() => {
-                                            document.getElementById('apply')?.scrollIntoView({ behavior: 'smooth' });
-                                        }, 100);
-                                    }}
-                                    _hover={{ 
-                                        _after: {
-                                            content: '""',
-                                            position: 'absolute',
-                                            bottom: '-4px',
-                                            left: 0,
-                                            right: 0,
-                                            height: '2px',
-                                            bg: '#FBB420'
-                                        }
-                                    }}
-                                    transition="all 0.2s"
-                                >
-                                    Apply
-                                </ChakraLink>
+                                {navItems.map((item, index) => {
+                                    const isActive = pathname === item.href;
+                                    return item.isExternal ? (
+                                        <ChakraLink
+                                            key={index}
+                                            href={item.href}
+                                            isExternal
+                                            fontSize="20px"
+                                            fontWeight="400"
+                                            color="black"
+                                            textDecoration="none"
+                                            position="relative"
+                                            onClick={() => onClose()}
+                                            _after={isActive ? {
+                                                content: '""',
+                                                position: 'absolute',
+                                                bottom: '-4px',
+                                                left: 0,
+                                                right: 0,
+                                                height: '2px',
+                                                bg: '#FBB420'
+                                            } : undefined}
+                                            _hover={{ 
+                                                _after: {
+                                                    content: '""',
+                                                    position: 'absolute',
+                                                    bottom: '-4px',
+                                                    left: 0,
+                                                    right: 0,
+                                                    height: '2px',
+                                                    bg: '#FBB420'
+                                                }
+                                            }}
+                                            transition="all 0.2s"
+                                        >
+                                            {item.label}
+                                        </ChakraLink>
+                                    ) : (
+                                        <Link key={index} href={item.href} passHref legacyBehavior>
+                                            <ChakraLink
+                                                fontSize="20px"
+                                                fontWeight="400"
+                                                color="black"
+                                                textDecoration="none"
+                                                position="relative"
+                                                onClick={(e) => handleMobileNavClick(e, item)}
+                                                _after={isActive ? {
+                                                    content: '""',
+                                                    position: 'absolute',
+                                                    bottom: '-4px',
+                                                    left: 0,
+                                                    right: 0,
+                                                    height: '2px',
+                                                    bg: '#FBB420'
+                                                } : undefined}
+                                                _hover={{ 
+                                                    _after: {
+                                                        content: '""',
+                                                        position: 'absolute',
+                                                        bottom: '-4px',
+                                                        left: 0,
+                                                        right: 0,
+                                                        height: '2px',
+                                                        bg: '#FBB420'
+                                                    }
+                                                }}
+                                                transition="all 0.2s"
+                                            >
+                                                {item.label}
+                                            </ChakraLink>
+                                        </Link>
+                                    );
+                                })}
                             </VStack>
                         </DrawerBody>
                     </DrawerContent>
