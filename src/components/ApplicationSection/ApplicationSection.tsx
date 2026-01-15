@@ -1,7 +1,8 @@
 "use client";
 
 import React from 'react';
-import { Box, Container, Heading, Text, Image, VStack, Grid, GridItem, Button } from '@chakra-ui/react';
+import { Box, Container, Heading, Text, Image, VStack, Grid, GridItem } from '@chakra-ui/react';
+import Button from '@/components/Button/Button';
 
 const ApplicationSection = () => {
     const requirements = [
@@ -96,17 +97,7 @@ const ApplicationSection = () => {
                         href="https://tally.so/r/NpXJaW"
                         target="_blank"
                         rel="noopener noreferrer"
-                        bg="#FBB420"
-                        color="black"
                         w={{ base: "100%", sm: "400px", md: "450px" }}
-                        h="58px"
-                        fontSize={{ base: "17px", md: "19px", lg: "20px" }}
-                        fontWeight="500"
-                        borderRadius="0"
-                        _hover={{
-                            bg: "#E09612"
-                        }}
-                        transition="all 0.2s"
                     >
                         Apply to join the Flint community
                     </Button>

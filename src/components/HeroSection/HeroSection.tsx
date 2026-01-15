@@ -1,7 +1,8 @@
 "use client";
 
 import React from 'react';
-import { Box, Container, Flex, Heading, Text, Button, Image } from '@chakra-ui/react';
+import { Box, Container, Flex, Heading, Text, Image } from '@chakra-ui/react';
+import Button from '@/components/Button/Button';
 
 const HeroSection = () => {
     return (
@@ -11,12 +12,12 @@ const HeroSection = () => {
             pb={{ base: "50px", md: "40px", lg: "45px" }}
             px={{ base: "20px", md: "40px", lg: "60px" }}
         >
-            <Container maxW="1400px">
+            <Container maxW="1200px">
                 <Flex
                     direction={{ base: "column", md: "row" }}
                     align="center"
                     justify="center"
-                    gap={{ base: 8, md: 16, lg: 20 }}
+                    gap={{ base: 8, md: 10, lg: 14 }}
                 >
                     <Box 
                         flex="0 0 auto"
@@ -28,7 +29,7 @@ const HeroSection = () => {
                         <Image
                             src="/assets/hero/hero-image.png"
                             alt="Flint and steel creating sparks"
-                            w={{ base: "280px", sm: "340px", md: "550px", lg: "650px", xl: "700px" }}
+                            w={{ base: "280px", sm: "340px", md: "420px", lg: "480px", xl: "480px" }}
                             h="auto"
                         />
                     </Box>
@@ -39,7 +40,7 @@ const HeroSection = () => {
                         align="center"
                         textAlign="center"
                         order={{ base: 1, md: 1 }}
-                        maxW={{ base: "100%", md: "600px" }}
+                        maxW={{ base: "100%", md: "500px" }}
                         sx={{
                             '@media (min-width: 768px)': {
                                 alignItems: 'flex-start',
@@ -76,19 +77,7 @@ const HeroSection = () => {
                             href="https://tally.so/r/NpXJaW"
                             target="_blank"
                             rel="noopener noreferrer"
-                            bg="#FBB420"
-                            color="#000"
-                            fontSize="18px"
-                            fontWeight="500"
-                            fontFamily="EB Garamond"
                             w={{ base: "240px", sm: "280px", md: "367px" }}
-                            h="58px"
-                            borderRadius="0"
-                            lineHeight="normal"
-                            _hover={{
-                                bg: "#E09612"
-                            }}
-                            transition="all 0.2s"
                         >
                             Apply to join
                         </Button>

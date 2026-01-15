@@ -65,7 +65,7 @@ const Header = () => {
 
                     <Flex 
                         align="center" 
-                        gap={{ base: 6, md: 10, lg: 12 }}
+                        gap={{ base: 6, md: 12, lg: 24 }}
                         display={{ base: "none", md: "flex" }}
                     >
                         <ChakraLink

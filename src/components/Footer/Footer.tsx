@@ -1,8 +1,9 @@
 "use client";
 
 import React from 'react';
-import { Box, Container, Text, VStack, Image, Link, Icon, Button } from '@chakra-ui/react';
+import { Box, Container, Text, VStack, Image, Link, Icon } from '@chakra-ui/react';
 import { FaXTwitter } from 'react-icons/fa6';
+import Button from '@/components/Button/Button';
 
 const Footer = () => {
     return (
@@ -46,18 +47,8 @@ const Footer = () => {
                     </Text>
 
                     <Button
-                        bg="#FBB420"
-                        color="black"
                         w={{ base: "200px", md: "220px" }}
                         h="48px"
-                        fontSize={{ base: "16px", md: "18px" }}
-                        fontWeight="500"
-                        fontFamily="EB Garamond"
-                        borderRadius="0"
-                        _hover={{
-                            bg: "#E09612"
-                        }}
-                        transition="all 0.2s"
                     >
                         Members Only
                     </Button>
