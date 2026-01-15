@@ -27,7 +27,8 @@
     "pg": "^8.17.1",
     "react": "latest",
     "react-dom": "latest",
-    "react-icons": "^4.11.0"
+    "react-icons": "^4.11.0",
+    "tsx": "^4.21.0"
   },
   "devDependencies": {
     "@types/node": "latest",
