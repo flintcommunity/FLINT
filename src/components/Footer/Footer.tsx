@@ -3,6 +3,7 @@
 import React from 'react';
 import { Box, Container, Text, VStack, Image, Link, Icon } from '@chakra-ui/react';
 import { FaXTwitter } from 'react-icons/fa6';
+import NextLink from 'next/link';
 import Button from '@/components/Button/Button';
 
 const Footer = () => {
@@ -47,6 +48,8 @@ const Footer = () => {
                     </Text>
 
                     <Button
+                        as={NextLink}
+                        href="/login"
                         w={{ base: "200px", md: "220px" }}
                         h="48px"
                     >
