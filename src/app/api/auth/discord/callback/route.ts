@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@server/db";
-import { users, sessions } from "@shared/schema";
+import { users, sessions, inviteTokens } from "@shared/schema";
 import { eq } from "drizzle-orm";
 import { randomBytes } from "crypto";
+import bcrypt from "bcryptjs";
 
 export async function GET(request: NextRequest) {
   const code = request.nextUrl.searchParams.get("code");
@@ -10,6 +11,35 @@ export async function GET(request: NextRequest) {
   
   if (!code) {
     return NextResponse.redirect(new URL("/signup?error=no_code", request.url));
+  }
+
+  if (!state) {
+    return NextResponse.redirect(new URL("/signup?error=invalid_state", request.url));
+  }
+
+  let inviteToken: string;
+  try {
+    const stateData = JSON.parse(Buffer.from(state, "base64").toString());
+    inviteToken = stateData.token;
+    if (!inviteToken) {
+      return NextResponse.redirect(new URL("/signup?error=invalid_state", request.url));
+    }
+  } catch {
+    return NextResponse.redirect(new URL("/signup?error=invalid_state", request.url));
+  }
+
+  const allTokens = await db.select().from(inviteTokens).where(eq(inviteTokens.isActive, true));
+  let tokenValid = false;
+  for (const storedToken of allTokens) {
+    const isMatch = await bcrypt.compare(inviteToken, storedToken.tokenHash);
+    if (isMatch) {
+      tokenValid = true;
+      break;
+    }
+  }
+
+  if (!tokenValid) {
+    return NextResponse.redirect(new URL("/signup?error=invalid_token", request.url));
   }
 
   const clientId = process.env.DISCORD_CLIENT_ID;
@@ -61,7 +91,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.redirect(new URL("/signup?error=no_email", request.url));
     }
 
-    let user = await db.select().from(users).where(eq(users.discordId, discordId)).then(rows => rows[0]);
+    let user = await db.select().from(users).where(eq(users.discordId, discordId)).then((rows: typeof users.$inferSelect[]) => rows[0]);
 
     if (!user) {
       const [newUser] = await db.insert(users).values({

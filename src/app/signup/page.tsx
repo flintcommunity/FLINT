@@ -27,6 +27,10 @@ const SignupPage = () => {
         return "We couldn't access your email from Discord. Please ensure your Discord account has a verified email.";
       case "oauth_error":
         return "An error occurred during authentication. Please try again.";
+      case "invalid_state":
+        return "Invalid authorization state. Please try again.";
+      case "invalid_token":
+        return "Invalid invite token. Please check your token and try again.";
       default:
         return null;
     }
