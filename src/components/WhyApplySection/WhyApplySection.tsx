@@ -10,8 +10,8 @@ const WhyApplySection = () => {
             description: "You have a track record of creating interesting things, know how to vibe code, and bring a level of experience that will elevate what we make."
         },
         {
-            title: "You're curious about bitcoin and AI.",
-            description: "You don't need to use them in every project, but their potential draws you to experiment with both."
+            title: "You're curious about AI and new ways to transact.",
+            description: "You're drawn to experiment with the possibilities unlocked by generative AI and new digital assets like bitcoin, stablecoins and more."
         },
         {
             title: "You bring good vibes to vibe coding.",
