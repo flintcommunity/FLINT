@@ -5,6 +5,9 @@ import { eq } from "drizzle-orm";
 import { randomBytes } from "crypto";
 
 function getBaseUrl() {
+  if (process.env.PRODUCTION_URL) {
+    return process.env.PRODUCTION_URL;
+  }
   if (process.env.REPLIT_DEV_DOMAIN) {
     return `https://${process.env.REPLIT_DEV_DOMAIN}`;
   }

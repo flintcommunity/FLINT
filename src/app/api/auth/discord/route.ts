@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
 function getBaseUrl() {
+  if (process.env.PRODUCTION_URL) {
+    return process.env.PRODUCTION_URL;
+  }
   if (process.env.REPLIT_DEV_DOMAIN) {
     return `https://${process.env.REPLIT_DEV_DOMAIN}`;
   }
