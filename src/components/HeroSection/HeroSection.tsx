@@ -73,7 +73,9 @@ const HeroSection = () => {
 
                         <Button
                             as="a"
-                            href="#apply"
+                            href="https://tally.so/r/NpXJaW"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             bg="#FBB420"
                             color="#000"
                             fontSize="18px"

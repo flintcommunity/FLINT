@@ -92,6 +92,10 @@ const ApplicationSection = () => {
                     </Grid>
 
                     <Button
+                        as="a"
+                        href="https://tally.so/r/NpXJaW"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         bg="#FBB420"
                         color="black"
                         w={{ base: "100%", sm: "400px", md: "450px" }}

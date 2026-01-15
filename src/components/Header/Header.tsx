@@ -74,12 +74,23 @@ const Header = () => {
                             fontWeight="400"
                             color="black"
                             textDecoration="none"
+                            position="relative"
                             onClick={(e) => {
                                 e.preventDefault();
                                 document.getElementById('why-join')?.scrollIntoView({ behavior: 'smooth' });
                             }}
-                            _hover={{ opacity: 0.7 }}
-                            transition="opacity 0.2s"
+                            _hover={{ 
+                                _after: {
+                                    content: '""',
+                                    position: 'absolute',
+                                    bottom: '-4px',
+                                    left: 0,
+                                    right: 0,
+                                    height: '2px',
+                                    bg: '#FBB420'
+                                }
+                            }}
+                            transition="all 0.2s"
                         >
                             Why join
                         </ChakraLink>
@@ -89,12 +100,23 @@ const Header = () => {
                             fontWeight="400"
                             color="black"
                             textDecoration="none"
+                            position="relative"
                             onClick={(e) => {
                                 e.preventDefault();
                                 document.getElementById('who-should-apply')?.scrollIntoView({ behavior: 'smooth' });
                             }}
-                            _hover={{ opacity: 0.7 }}
-                            transition="opacity 0.2s"
+                            _hover={{ 
+                                _after: {
+                                    content: '""',
+                                    position: 'absolute',
+                                    bottom: '-4px',
+                                    left: 0,
+                                    right: 0,
+                                    height: '2px',
+                                    bg: '#FBB420'
+                                }
+                            }}
+                            transition="all 0.2s"
                         >
                             Who should apply
                         </ChakraLink>
@@ -104,12 +126,23 @@ const Header = () => {
                             fontWeight="400"
                             color="black"
                             textDecoration="none"
+                            position="relative"
                             onClick={(e) => {
                                 e.preventDefault();
                                 document.getElementById('apply')?.scrollIntoView({ behavior: 'smooth' });
                             }}
-                            _hover={{ opacity: 0.7 }}
-                            transition="opacity 0.2s"
+                            _hover={{ 
+                                _after: {
+                                    content: '""',
+                                    position: 'absolute',
+                                    bottom: '-4px',
+                                    left: 0,
+                                    right: 0,
+                                    height: '2px',
+                                    bg: '#FBB420'
+                                }
+                            }}
+                            transition="all 0.2s"
                         >
                             Apply
                         </ChakraLink>
@@ -128,6 +161,7 @@ const Header = () => {
                                     fontWeight="400"
                                     color="black"
                                     textDecoration="none"
+                                    position="relative"
                                     onClick={(e) => {
                                         e.preventDefault();
                                         onClose();
@@ -135,7 +169,18 @@ const Header = () => {
                                             document.getElementById('why-join')?.scrollIntoView({ behavior: 'smooth' });
                                         }, 100);
                                     }}
-                                    _hover={{ opacity: 0.7 }}
+                                    _hover={{ 
+                                        _after: {
+                                            content: '""',
+                                            position: 'absolute',
+                                            bottom: '-4px',
+                                            left: 0,
+                                            right: 0,
+                                            height: '2px',
+                                            bg: '#FBB420'
+                                        }
+                                    }}
+                                    transition="all 0.2s"
                                 >
                                     Why join
                                 </ChakraLink>
@@ -145,6 +190,7 @@ const Header = () => {
                                     fontWeight="400"
                                     color="black"
                                     textDecoration="none"
+                                    position="relative"
                                     onClick={(e) => {
                                         e.preventDefault();
                                         onClose();
@@ -152,7 +198,18 @@ const Header = () => {
                                             document.getElementById('who-should-apply')?.scrollIntoView({ behavior: 'smooth' });
                                         }, 100);
                                     }}
-                                    _hover={{ opacity: 0.7 }}
+                                    _hover={{ 
+                                        _after: {
+                                            content: '""',
+                                            position: 'absolute',
+                                            bottom: '-4px',
+                                            left: 0,
+                                            right: 0,
+                                            height: '2px',
+                                            bg: '#FBB420'
+                                        }
+                                    }}
+                                    transition="all 0.2s"
                                 >
                                     Who should apply
                                 </ChakraLink>
@@ -162,6 +219,7 @@ const Header = () => {
                                     fontWeight="400"
                                     color="black"
                                     textDecoration="none"
+                                    position="relative"
                                     onClick={(e) => {
                                         e.preventDefault();
                                         onClose();
@@ -169,7 +227,18 @@ const Header = () => {
                                             document.getElementById('apply')?.scrollIntoView({ behavior: 'smooth' });
                                         }, 100);
                                     }}
-                                    _hover={{ opacity: 0.7 }}
+                                    _hover={{ 
+                                        _after: {
+                                            content: '""',
+                                            position: 'absolute',
+                                            bottom: '-4px',
+                                            left: 0,
+                                            right: 0,
+                                            height: '2px',
+                                            bg: '#FBB420'
+                                        }
+                                    }}
+                                    transition="all 0.2s"
                                 >
                                     Apply
                                 </ChakraLink>
