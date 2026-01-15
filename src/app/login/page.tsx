@@ -26,7 +26,6 @@ const LoginPage = () => {
             fontSize={{ base: "36px", md: "48px" }}
             fontWeight="400"
             fontFamily="EB Garamond"
-            fontStyle="italic"
             color="black"
             textAlign="center"
           >
