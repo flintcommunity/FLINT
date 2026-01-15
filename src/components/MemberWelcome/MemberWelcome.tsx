@@ -1,16 +1,31 @@
 "use client";
 
 import React from 'react';
-import { Box, Container, Heading, Text, VStack, Link as ChakraLink } from '@chakra-ui/react';
+import { Box, Container, Heading, Text, VStack, Link as ChakraLink, Spinner } from '@chakra-ui/react';
 import Link from 'next/link';
 
 interface MemberWelcomeProps {
-    memberName: string;
+    memberName: string | null;
     daysActive: number;
-    thingsShipped: number;
+    isLoading?: boolean;
 }
 
-const MemberWelcome = ({ memberName, daysActive, thingsShipped }: MemberWelcomeProps) => {
+const MemberWelcome = ({ memberName, daysActive, isLoading = false }: MemberWelcomeProps) => {
+    const getMembershipMessage = () => {
+        if (daysActive === 0) {
+            return "You just joined the Flint community today.";
+        }
+        return (
+            <>
+                You've been a member of the Flint community for{' '}
+                <Box as="span" fontWeight="700">
+                    {daysActive} {daysActive === 1 ? 'day' : 'days'}
+                </Box>
+                .
+            </>
+        );
+    };
+
     return (
         <Box 
             bg="#FEF8F3"
@@ -20,49 +35,49 @@ const MemberWelcome = ({ memberName, daysActive, thingsShipped }: MemberWelcomeP
         >
             <Container maxW="1200px">
                 <VStack spacing={{ base: 6, md: 8 }} align="center">
-                    <Heading
-                        as="h1"
-                        fontSize={{ base: "40px", sm: "48px", md: "64px", lg: "72px" }}
-                        fontWeight="500"
-                        color="#000"
-                        fontFamily="EB Garamond"
-                        lineHeight="normal"
-                        textAlign="center"
-                    >
-                        Here's your Field Guide,{' '}
-                        <Link href="/profile" passHref legacyBehavior>
-                            <ChakraLink
-                                textDecoration="underline"
-                                textDecorationColor="#000"
-                                textDecorationThickness="2px"
-                                textUnderlineOffset="4px"
-                                _hover={{ textDecorationColor: "#FBB420" }}
-                                transition="all 0.2s"
+                    {isLoading ? (
+                        <Box py={{ base: "20px", md: "40px" }}>
+                            <Spinner size="xl" color="#FBB420" thickness="3px" />
+                        </Box>
+                    ) : (
+                        <>
+                            <Heading
+                                as="h1"
+                                fontSize={{ base: "40px", sm: "48px", md: "64px", lg: "72px" }}
+                                fontWeight="500"
+                                color="#000"
+                                fontFamily="EB Garamond"
+                                lineHeight="normal"
+                                textAlign="center"
                             >
-                                {memberName}
-                            </ChakraLink>
-                        </Link>
-                        .
-                    </Heading>
+                                Here's your Field Guide,{' '}
+                                <Link href="/profile" passHref legacyBehavior>
+                                    <ChakraLink
+                                        textDecoration="underline"
+                                        textDecorationColor="#000"
+                                        textDecorationThickness="2px"
+                                        textUnderlineOffset="4px"
+                                        _hover={{ textDecorationColor: "#FBB420" }}
+                                        transition="all 0.2s"
+                                    >
+                                        {memberName}
+                                    </ChakraLink>
+                                </Link>
+                                .
+                            </Heading>
 
-                    <Text
-                        fontSize={{ base: "20px", md: "24px", lg: "28px" }}
-                        fontWeight="400"
-                        color="#767676"
-                        fontFamily="EB Garamond"
-                        lineHeight="normal"
-                        textAlign="center"
-                    >
-                        You've been a Member of the Flint community for{' '}
-                        <Box as="span" fontWeight="700">
-                            {daysActive} days
-                        </Box>
-                        , and shipped{' '}
-                        <Box as="span" fontWeight="700">
-                            {thingsShipped} things
-                        </Box>
-                        . Well done!
-                    </Text>
+                            <Text
+                                fontSize={{ base: "20px", md: "24px", lg: "28px" }}
+                                fontWeight="400"
+                                color="#767676"
+                                fontFamily="EB Garamond"
+                                lineHeight="normal"
+                                textAlign="center"
+                            >
+                                {getMembershipMessage()}
+                            </Text>
+                        </>
+                    )}
 
                     <Text
                         fontSize={{ base: "20px", md: "24px" }}

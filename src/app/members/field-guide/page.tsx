@@ -18,10 +18,10 @@ const membersNavItems = [
 ];
 
 const FieldGuidePage = () => {
-  const [memberName, setMemberName] = useState("");
+  const [memberName, setMemberName] = useState<string | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [daysActive, setDaysActive] = useState(0);
-  const thingsShipped = 0;
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -34,12 +34,18 @@ const FieldGuidePage = () => {
           
           const createdAt = new Date(data.user.createdAt);
           const now = new Date();
-          const diffTime = Math.abs(now.getTime() - createdAt.getTime());
-          const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+          
+          const createdDateOnly = new Date(createdAt.getFullYear(), createdAt.getMonth(), createdAt.getDate());
+          const nowDateOnly = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+          
+          const diffTime = nowDateOnly.getTime() - createdDateOnly.getTime();
+          const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
           setDaysActive(diffDays);
         }
       } catch (error) {
         console.error("Failed to fetch user:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchUser();
@@ -50,9 +56,9 @@ const FieldGuidePage = () => {
       <Header navItems={membersNavItems} />
       
       <MemberWelcome 
-        memberName={memberName || "Member"}
+        memberName={memberName}
         daysActive={daysActive}
-        thingsShipped={thingsShipped}
+        isLoading={isLoading}
       />
 
       <ValuesSection />
