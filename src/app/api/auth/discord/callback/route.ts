@@ -4,16 +4,24 @@ import { users, sessions, pendingSignups } from "@shared/schema";
 import { eq, and, gt } from "drizzle-orm";
 import { randomBytes } from "crypto";
 
+function getBaseUrl() {
+  if (process.env.REPLIT_DEV_DOMAIN) {
+    return `https://${process.env.REPLIT_DEV_DOMAIN}`;
+  }
+  return "http://localhost:5000";
+}
+
 export async function GET(request: NextRequest) {
+  const baseUrl = getBaseUrl();
   const code = request.nextUrl.searchParams.get("code");
   const stateToken = request.nextUrl.searchParams.get("state");
   
   if (!code) {
-    return NextResponse.redirect(new URL("/signup?error=no_code", request.url));
+    return NextResponse.redirect(`${baseUrl}/signup?error=no_code`);
   }
 
   if (!stateToken) {
-    return NextResponse.redirect(new URL("/signup?error=invalid_state", request.url));
+    return NextResponse.redirect(`${baseUrl}/signup?error=invalid_state`);
   }
 
   const pendingSignup = await db
@@ -28,17 +36,17 @@ export async function GET(request: NextRequest) {
     .then((rows: typeof pendingSignups.$inferSelect[]) => rows[0]);
 
   if (!pendingSignup) {
-    return NextResponse.redirect(new URL("/signup?error=invalid_state", request.url));
+    return NextResponse.redirect(`${baseUrl}/signup?error=invalid_state`);
   }
 
   await db.delete(pendingSignups).where(eq(pendingSignups.stateToken, stateToken));
 
   const clientId = process.env.DISCORD_CLIENT_ID;
   const clientSecret = process.env.DISCORD_CLIENT_SECRET;
-  const redirectUri = `${process.env.REPLIT_DEV_DOMAIN ? `https://${process.env.REPLIT_DEV_DOMAIN}` : 'http://localhost:5000'}/api/auth/discord/callback`;
+  const redirectUri = `${baseUrl}/api/auth/discord/callback`;
 
   if (!clientId || !clientSecret) {
-    return NextResponse.redirect(new URL("/signup?error=config_error", request.url));
+    return NextResponse.redirect(`${baseUrl}/signup?error=config_error`);
   }
 
   try {
@@ -58,7 +66,7 @@ export async function GET(request: NextRequest) {
 
     if (!tokenResponse.ok) {
       console.error("Token exchange failed:", await tokenResponse.text());
-      return NextResponse.redirect(new URL("/signup?error=token_exchange_failed", request.url));
+      return NextResponse.redirect(`${baseUrl}/signup?error=token_exchange_failed`);
     }
 
     const tokenData = await tokenResponse.json();
@@ -72,14 +80,14 @@ export async function GET(request: NextRequest) {
 
     if (!userResponse.ok) {
       console.error("User fetch failed:", await userResponse.text());
-      return NextResponse.redirect(new URL("/signup?error=user_fetch_failed", request.url));
+      return NextResponse.redirect(`${baseUrl}/signup?error=user_fetch_failed`);
     }
 
     const discordUser = await userResponse.json();
     const { id: discordId, username: discordUsername, email } = discordUser;
 
     if (!email) {
-      return NextResponse.redirect(new URL("/signup?error=no_email", request.url));
+      return NextResponse.redirect(`${baseUrl}/signup?error=no_email`);
     }
 
     let user = await db.select().from(users).where(eq(users.discordId, discordId)).then((rows: typeof users.$inferSelect[]) => rows[0]);
@@ -102,7 +110,7 @@ export async function GET(request: NextRequest) {
       expiresAt,
     });
 
-    const response = NextResponse.redirect(new URL("/dashboard", request.url));
+    const response = NextResponse.redirect(`${baseUrl}/dashboard`);
     response.cookies.set("session_token", sessionToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
@@ -114,6 +122,6 @@ export async function GET(request: NextRequest) {
     return response;
   } catch (error) {
     console.error("Discord OAuth error:", error);
-    return NextResponse.redirect(new URL("/signup?error=oauth_error", request.url));
+    return NextResponse.redirect(`${baseUrl}/signup?error=oauth_error`);
   }
 }
