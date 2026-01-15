@@ -4,6 +4,7 @@ const nextConfig = {
   images: {
     remotePatterns: [],
   },
+  allowedDevOrigins: ['*'],
 }
 
 module.exports = nextConfig
