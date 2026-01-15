@@ -1,7 +1,8 @@
 "use client";
 
 import React from 'react';
-import { Box, Container, Heading, Text, VStack } from '@chakra-ui/react';
+import { Box, Container, Heading, Text, VStack, Link as ChakraLink } from '@chakra-ui/react';
+import Link from 'next/link';
 
 interface MemberWelcomeProps {
     memberName: string;
@@ -29,15 +30,18 @@ const MemberWelcome = ({ memberName, daysActive, thingsShipped }: MemberWelcomeP
                         textAlign="center"
                     >
                         Here's your Field Guide,{' '}
-                        <Box 
-                            as="span" 
-                            textDecoration="underline"
-                            textDecorationColor="#000"
-                            textDecorationThickness="2px"
-                            textUnderlineOffset="4px"
-                        >
-                            {memberName}
-                        </Box>
+                        <Link href="/dashboard" passHref legacyBehavior>
+                            <ChakraLink
+                                textDecoration="underline"
+                                textDecorationColor="#000"
+                                textDecorationThickness="2px"
+                                textUnderlineOffset="4px"
+                                _hover={{ textDecorationColor: "#FBB420" }}
+                                transition="all 0.2s"
+                            >
+                                {memberName}
+                            </ChakraLink>
+                        </Link>
                         .
                     </Heading>
 

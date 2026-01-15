@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box } from "@chakra-ui/react";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
@@ -18,17 +18,39 @@ const membersNavItems = [
 ];
 
 const FieldGuidePage = () => {
-  // TODO: Replace with actual user data from authentication
-  const memberName = "Mat";
-  const daysActive = 45;
-  const thingsShipped = 3;
+  const [memberName, setMemberName] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [daysActive, setDaysActive] = useState(0);
+  const thingsShipped = 0;
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await fetch("/api/auth/me");
+        if (response.ok) {
+          const data = await response.json();
+          setMemberName(data.user.discordUsername);
+          setIsLoggedIn(true);
+          
+          const createdAt = new Date(data.user.createdAt);
+          const now = new Date();
+          const diffTime = Math.abs(now.getTime() - createdAt.getTime());
+          const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+          setDaysActive(diffDays);
+        }
+      } catch (error) {
+        console.error("Failed to fetch user:", error);
+      }
+    };
+    fetchUser();
+  }, []);
 
   return (
     <Box>
       <Header navItems={membersNavItems} />
       
       <MemberWelcome 
-        memberName={memberName}
+        memberName={memberName || "Member"}
         daysActive={daysActive}
         thingsShipped={thingsShipped}
       />
@@ -41,7 +63,7 @@ const FieldGuidePage = () => {
 
       <ProductProgressionSection />
 
-      <Footer />
+      <Footer isLoggedIn={isLoggedIn} />
     </Box>
   );
 };

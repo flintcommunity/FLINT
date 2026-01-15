@@ -110,7 +110,7 @@ export async function GET(request: NextRequest) {
       expiresAt,
     });
 
-    const response = NextResponse.redirect(`${baseUrl}/dashboard`);
+    const response = NextResponse.redirect(`${baseUrl}/members/field-guide`);
     response.cookies.set("session_token", sessionToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",

@@ -6,7 +6,19 @@ import { FaXTwitter } from 'react-icons/fa6';
 import NextLink from 'next/link';
 import Button from '@/components/Button/Button';
 
-const Footer = () => {
+interface FooterProps {
+    isLoggedIn?: boolean;
+}
+
+const Footer = ({ isLoggedIn = false }: FooterProps) => {
+    const handleLogout = async () => {
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '/api/auth/logout';
+        document.body.appendChild(form);
+        form.submit();
+    };
+
     return (
         <Box 
             bg="#FEF8F3"
@@ -47,14 +59,24 @@ const Footer = () => {
                         , a division of Block that supports bitcoin adoption and open source development.
                     </Text>
 
-                    <Button
-                        as={NextLink}
-                        href="/login"
-                        w={{ base: "200px", md: "220px" }}
-                        h="48px"
-                    >
-                        Members Only
-                    </Button>
+                    {isLoggedIn ? (
+                        <Button
+                            onClick={handleLogout}
+                            w={{ base: "200px", md: "220px" }}
+                            h="48px"
+                        >
+                            Log out
+                        </Button>
+                    ) : (
+                        <Button
+                            as={NextLink}
+                            href="/login"
+                            w={{ base: "200px", md: "220px" }}
+                            h="48px"
+                        >
+                            Members Only
+                        </Button>
+                    )}
 
                     <Icon 
                         as={FaXTwitter} 
