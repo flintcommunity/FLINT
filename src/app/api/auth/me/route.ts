@@ -41,6 +41,7 @@ export async function GET(request: NextRequest) {
       user: {
         email: user.email,
         discordUsername: user.discordUsername,
+        createdAt: user.createdAt,
       },
     });
   } catch (error) {
