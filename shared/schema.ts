@@ -23,6 +23,14 @@ export const sessions = pgTable("sessions", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+export const pendingSignups = pgTable("pending_signups", {
+  id: serial("id").primaryKey(),
+  stateToken: varchar("state_token", { length: 255 }).notNull().unique(),
+  inviteTokenId: serial("invite_token_id").references(() => inviteTokens.id).notNull(),
+  expiresAt: timestamp("expires_at").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 export type InviteToken = typeof inviteTokens.$inferSelect;

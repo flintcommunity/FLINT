@@ -8,12 +8,14 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Discord client ID not configured" }, { status: 500 });
   }
 
-  const token = request.nextUrl.searchParams.get("token");
+  const stateToken = request.nextUrl.searchParams.get("state");
   
-  const state = Buffer.from(JSON.stringify({ token })).toString("base64");
+  if (!stateToken) {
+    return NextResponse.redirect(new URL("/signup?error=missing_state", request.url));
+  }
   
   const scopes = ["identify", "email"];
-  const authUrl = `https://discord.com/oauth2/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&response_type=code&scope=${scopes.join("%20")}&state=${state}`;
+  const authUrl = `https://discord.com/oauth2/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&response_type=code&scope=${scopes.join("%20")}&state=${stateToken}`;
   
   return NextResponse.redirect(authUrl);
 }

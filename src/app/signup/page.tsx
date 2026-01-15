@@ -49,8 +49,8 @@ const SignupPage = () => {
 
       const data = await response.json();
 
-      if (data.valid) {
-        window.location.href = `/api/auth/discord?token=${encodeURIComponent(token)}`;
+      if (data.valid && data.stateToken) {
+        window.location.href = `/api/auth/discord?state=${encodeURIComponent(data.stateToken)}`;
       } else {
         setError(data.error || "Invalid invite token");
       }

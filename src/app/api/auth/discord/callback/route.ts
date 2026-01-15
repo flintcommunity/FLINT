@@ -1,46 +1,37 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@server/db";
-import { users, sessions, inviteTokens } from "@shared/schema";
-import { eq } from "drizzle-orm";
+import { users, sessions, pendingSignups } from "@shared/schema";
+import { eq, and, gt } from "drizzle-orm";
 import { randomBytes } from "crypto";
-import bcrypt from "bcryptjs";
 
 export async function GET(request: NextRequest) {
   const code = request.nextUrl.searchParams.get("code");
-  const state = request.nextUrl.searchParams.get("state");
+  const stateToken = request.nextUrl.searchParams.get("state");
   
   if (!code) {
     return NextResponse.redirect(new URL("/signup?error=no_code", request.url));
   }
 
-  if (!state) {
+  if (!stateToken) {
     return NextResponse.redirect(new URL("/signup?error=invalid_state", request.url));
   }
 
-  let inviteToken: string;
-  try {
-    const stateData = JSON.parse(Buffer.from(state, "base64").toString());
-    inviteToken = stateData.token;
-    if (!inviteToken) {
-      return NextResponse.redirect(new URL("/signup?error=invalid_state", request.url));
-    }
-  } catch {
+  const pendingSignup = await db
+    .select()
+    .from(pendingSignups)
+    .where(
+      and(
+        eq(pendingSignups.stateToken, stateToken),
+        gt(pendingSignups.expiresAt, new Date())
+      )
+    )
+    .then((rows: typeof pendingSignups.$inferSelect[]) => rows[0]);
+
+  if (!pendingSignup) {
     return NextResponse.redirect(new URL("/signup?error=invalid_state", request.url));
   }
 
-  const allTokens = await db.select().from(inviteTokens).where(eq(inviteTokens.isActive, true));
-  let tokenValid = false;
-  for (const storedToken of allTokens) {
-    const isMatch = await bcrypt.compare(inviteToken, storedToken.tokenHash);
-    if (isMatch) {
-      tokenValid = true;
-      break;
-    }
-  }
-
-  if (!tokenValid) {
-    return NextResponse.redirect(new URL("/signup?error=invalid_token", request.url));
-  }
+  await db.delete(pendingSignups).where(eq(pendingSignups.stateToken, stateToken));
 
   const clientId = process.env.DISCORD_CLIENT_ID;
   const clientSecret = process.env.DISCORD_CLIENT_SECRET;

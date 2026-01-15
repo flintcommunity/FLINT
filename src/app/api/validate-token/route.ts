@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { db } from "@server/db";
-import { inviteTokens } from "@shared/schema";
+import { inviteTokens, pendingSignups } from "@shared/schema";
 import { eq } from "drizzle-orm";
+import { randomBytes } from "crypto";
 
 export async function POST(request: NextRequest) {
   try {
@@ -17,7 +18,16 @@ export async function POST(request: NextRequest) {
     for (const storedToken of allTokens) {
       const isMatch = await bcrypt.compare(token, storedToken.tokenHash);
       if (isMatch) {
-        return NextResponse.json({ valid: true });
+        const stateToken = randomBytes(32).toString("hex");
+        const expiresAt = new Date(Date.now() + 10 * 60 * 1000);
+
+        await db.insert(pendingSignups).values({
+          stateToken,
+          inviteTokenId: storedToken.id,
+          expiresAt,
+        });
+
+        return NextResponse.json({ valid: true, stateToken });
       }
     }
     
