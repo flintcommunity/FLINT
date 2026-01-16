@@ -9,6 +9,7 @@ import GatherSection from "@/components/GatherSection/GatherSection";
 import WhyApplySection from "@/components/WhyApplySection/WhyApplySection";
 import ApplicationSection from "@/components/ApplicationSection/ApplicationSection";
 import DisclaimersSection from "@/components/DisclaimersSection/DisclaimersSection";
+import FirewoodSection from "@/components/FirewoodSection/FirewoodSection";
 import Footer from "@/components/Footer/Footer";
 
 const Home = () => {
@@ -21,6 +22,7 @@ const Home = () => {
       <WhyApplySection />
       <ApplicationSection />
       <DisclaimersSection />
+      <FirewoodSection />
       <Footer />
     </Box>
   );

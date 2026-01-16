@@ -35,7 +35,7 @@ const defaultNavItems: NavItem[] = [
     { label: "Why join", href: "/#why-join", scrollTo: "why-join" },
     { label: "Who should apply", href: "/#who-should-apply", scrollTo: "who-should-apply" },
     { label: "Apply", href: "/#apply", scrollTo: "apply" },
-    { label: "Firewood", href: "/firewood" }
+    { label: "Firewood", href: "/#firewood", scrollTo: "firewood" }
 ];
 
 const Header = ({ navItems = defaultNavItems }: HeaderProps) => {
