@@ -32,9 +32,9 @@ interface HeaderProps {
 }
 
 const defaultNavItems: NavItem[] = [
-    { label: "Why join", href: "#why-join", scrollTo: "why-join" },
-    { label: "Who should apply", href: "#who-should-apply", scrollTo: "who-should-apply" },
-    { label: "Apply", href: "#apply", scrollTo: "apply" },
+    { label: "Why join", href: "/#why-join", scrollTo: "why-join" },
+    { label: "Who should apply", href: "/#who-should-apply", scrollTo: "who-should-apply" },
+    { label: "Apply", href: "/#apply", scrollTo: "apply" },
     { label: "Firewood", href: "/firewood" }
 ];
 
@@ -43,7 +43,7 @@ const Header = ({ navItems = defaultNavItems }: HeaderProps) => {
     const pathname = usePathname();
 
     const handleNavClick = (e: React.MouseEvent, item: NavItem) => {
-        if (item.scrollTo) {
+        if (item.scrollTo && pathname === "/") {
             e.preventDefault();
             const element = document.getElementById(item.scrollTo);
             if (element) {
@@ -53,7 +53,7 @@ const Header = ({ navItems = defaultNavItems }: HeaderProps) => {
     };
 
     const handleMobileNavClick = (e: React.MouseEvent, item: NavItem) => {
-        if (item.scrollTo) {
+        if (item.scrollTo && pathname === "/") {
             e.preventDefault();
             onClose();
             setTimeout(() => {
