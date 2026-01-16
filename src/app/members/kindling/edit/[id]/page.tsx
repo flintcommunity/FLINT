@@ -69,7 +69,9 @@ const EditAppPage = () => {
   useEffect(() => {
     const fetchApp = async () => {
       try {
-        const response = await fetch(`/api/apps/${appId}`);
+        const response = await fetch(`/api/apps/${appId}`, {
+          credentials: 'include'
+        });
         if (!response.ok) {
           if (response.status === 401) {
             router.push("/login");
@@ -215,6 +217,7 @@ const EditAppPage = () => {
       const response = await fetch(`/api/apps/${appId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
+        credentials: 'include',
         body: JSON.stringify({
           ...formData,
           logoUrl,
