@@ -42,6 +42,7 @@ export const apps = pgTable("apps", {
   platforms: text("platforms").notNull(),
   videoUrl: text("video_url"),
   initialPrompt: text("initial_prompt"),
+  isFirewood: boolean("is_firewood").default(false).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 

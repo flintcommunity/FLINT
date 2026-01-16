@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@server/db";
-import { apps, users } from "@shared/schema";
+import { apps } from "@shared/schema";
 import { eq, desc } from "drizzle-orm";
 
 export async function GET(request: NextRequest) {
@@ -12,16 +12,10 @@ export async function GET(request: NextRequest) {
         logoUrl: apps.logoUrl,
         description: apps.description,
         appUrl: apps.appUrl,
-        feedbackRequested: apps.feedbackRequested,
         platforms: apps.platforms,
-        videoUrl: apps.videoUrl,
-        initialPrompt: apps.initialPrompt,
-        createdAt: apps.createdAt,
-        userId: apps.userId,
-        userDiscordUsername: users.discordUsername,
       })
       .from(apps)
-      .leftJoin(users, eq(apps.userId, users.id))
+      .where(eq(apps.isFirewood, true))
       .orderBy(desc(apps.createdAt));
 
     return NextResponse.json({ apps: firewoodApps });

@@ -4,25 +4,19 @@ import React, { useEffect, useState } from "react";
 import { Box, Container, VStack, Text, Image, Heading, Spinner } from "@chakra-ui/react";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
-import AppCard from "@/components/AppCard/AppCard";
+import FirewoodAppCard from "@/components/FirewoodAppCard/FirewoodAppCard";
 
-interface App {
+interface FirewoodApp {
   id: number;
   name: string;
   logoUrl: string | null;
   description: string;
   appUrl: string;
-  feedbackRequested: string;
   platforms: string;
-  videoUrl: string | null;
-  initialPrompt: string | null;
-  createdAt: string;
-  userId: number;
-  userDiscordUsername: string | null;
 }
 
 const FirewoodPage = () => {
-  const [apps, setApps] = useState<App[]>([]);
+  const [apps, setApps] = useState<FirewoodApp[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -101,17 +95,13 @@ const FirewoodPage = () => {
             ) : (
               <VStack spacing={4} align="stretch" w="100%">
                 {apps.map((app) => (
-                  <AppCard
+                  <FirewoodAppCard
                     key={app.id}
                     name={app.name}
                     logoUrl={app.logoUrl}
                     description={app.description}
                     appUrl={app.appUrl}
-                    feedbackRequested={app.feedbackRequested}
                     platforms={app.platforms}
-                    videoUrl={app.videoUrl}
-                    userDiscordUsername={app.userDiscordUsername}
-                    createdAt={app.createdAt}
                   />
                 ))}
               </VStack>
