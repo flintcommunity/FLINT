@@ -85,7 +85,7 @@ export async function GET(request: NextRequest) {
     const response = NextResponse.redirect(`${baseUrl}/members/field-guide`);
     response.cookies.set("session_token", sessionToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      secure: true,
       sameSite: "lax",
       expires: expiresAt,
       path: "/",
