@@ -34,6 +34,10 @@ const AppCard = ({
     year: "numeric",
   });
 
+  const resolvedLogoUrl = logoUrl?.startsWith("/objects/")
+    ? `/api${logoUrl}`
+    : logoUrl;
+
   return (
     <Box
       bg="white"
@@ -43,9 +47,9 @@ const AppCard = ({
       w="100%"
     >
       <HStack align="flex-start" spacing={4}>
-        {logoUrl ? (
+        {resolvedLogoUrl ? (
           <Image
-            src={logoUrl}
+            src={resolvedLogoUrl}
             alt={`${name} logo`}
             boxSize={{ base: "60px", md: "80px" }}
             objectFit="cover"
