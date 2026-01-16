@@ -91,7 +91,7 @@ const KindlingPage = () => {
                 textAlign="center"
                 maxW="600px"
               >
-                Apps built by the Flint community. Share what you're working on and get feedback from fellow builders.
+                Products built by the Flint Community.
               </Text>
               <Button
                 as={Link}
