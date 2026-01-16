@@ -289,7 +289,7 @@ const SubmitAppPage = () => {
 
             <FormControl>
               <FormLabel fontFamily="EB Garamond" fontSize="16px" fontWeight="700" mb={2}>
-                URL (or link to download binary)
+                URL to use your app
               </FormLabel>
               <Input
                 name="appUrl"
