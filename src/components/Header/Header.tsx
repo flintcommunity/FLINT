@@ -18,7 +18,7 @@ import {
 } from '@chakra-ui/react';
 import { HamburgerIcon } from '@chakra-ui/icons';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 interface NavItem {
     label: string;
@@ -41,31 +41,36 @@ const defaultNavItems: NavItem[] = [
 const Header = ({ navItems = defaultNavItems }: HeaderProps) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const pathname = usePathname();
+    const router = useRouter();
 
     const handleNavClick = (e: React.MouseEvent, item: NavItem) => {
-        if (item.scrollTo && pathname === "/") {
+        if (item.scrollTo) {
             e.preventDefault();
-            const element = document.getElementById(item.scrollTo);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
+            if (pathname === "/") {
+                const element = document.getElementById(item.scrollTo);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
+            } else {
+                router.push(item.href);
             }
         }
     };
 
     const handleMobileNavClick = (e: React.MouseEvent, item: NavItem) => {
-        if (item.scrollTo && pathname === "/") {
+        onClose();
+        if (item.scrollTo) {
             e.preventDefault();
-            onClose();
-            setTimeout(() => {
-                if (item.scrollTo) {
-                    const element = document.getElementById(item.scrollTo);
+            if (pathname === "/") {
+                setTimeout(() => {
+                    const element = document.getElementById(item.scrollTo!);
                     if (element) {
                         element.scrollIntoView({ behavior: 'smooth' });
                     }
-                }
-            }, 100);
-        } else {
-            onClose();
+                }, 100);
+            } else {
+                router.push(item.href);
+            }
         }
     };
 
