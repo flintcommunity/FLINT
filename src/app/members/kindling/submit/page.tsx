@@ -387,7 +387,6 @@ const SubmitAppPage = () => {
                 name="githubUrl"
                 value={formData.githubUrl}
                 onChange={handleInputChange}
-                placeholder="https://github.com/..."
                 bg="white"
                 border="1px solid"
                 borderColor="rgba(0,0,0,0.2)"
