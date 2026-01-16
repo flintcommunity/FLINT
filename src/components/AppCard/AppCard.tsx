@@ -133,7 +133,7 @@ const AppCard = ({
             fontSize="14px"
             fontFamily="EB Garamond"
             color="#767676"
-            noOfLines={2}
+            whiteSpace="pre-wrap"
           >
             {feedbackRequested}
           </Text>
