@@ -78,11 +78,17 @@ const Footer = ({ isLoggedIn = false }: FooterProps) => {
                         </Button>
                     )}
 
-                    <Icon 
-                        as={FaXTwitter} 
-                        boxSize={{ base: "24px", md: "28px" }}
-                        color="black"
-                    />
+                    <Link 
+                        href="https://x.com/flintsbuild" 
+                        isExternal
+                        _hover={{ opacity: 0.7 }}
+                    >
+                        <Icon 
+                            as={FaXTwitter} 
+                            boxSize={{ base: "24px", md: "28px" }}
+                            color="black"
+                        />
+                    </Link>
 
                     <Text 
                         fontSize={{ base: "16px", md: "18px" }}
