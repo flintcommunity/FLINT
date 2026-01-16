@@ -57,7 +57,6 @@ const EditAppPage = () => {
     feedbackRequested: "",
     platforms: [] as string[],
     videoUrl: "",
-    initialPrompt: "",
     githubUrl: "",
   });
   const [existingLogoUrl, setExistingLogoUrl] = useState<string | null>(null);
@@ -94,7 +93,6 @@ const EditAppPage = () => {
           feedbackRequested: app.feedbackRequested || "",
           platforms: app.platforms ? app.platforms.split(",").filter((p: string) => p.trim()) : [],
           videoUrl: app.videoUrl || "",
-          initialPrompt: app.initialPrompt || "",
           githubUrl: app.githubUrl || "",
         });
 
@@ -436,24 +434,6 @@ const EditAppPage = () => {
                 borderColor="rgba(0,0,0,0.2)"
                 borderRadius="0"
                 h="44px"
-                fontSize="16px"
-                _focus={{ borderColor: "#FBB420", boxShadow: "none" }}
-              />
-            </FormControl>
-
-            <FormControl>
-              <FormLabel fontFamily="EB Garamond" fontSize="16px" fontWeight="700" mb={2}>
-                Initial prompt
-              </FormLabel>
-              <Textarea
-                name="initialPrompt"
-                value={formData.initialPrompt}
-                onChange={handleInputChange}
-                bg="white"
-                border="1px solid"
-                borderColor="rgba(0,0,0,0.2)"
-                borderRadius="0"
-                minH="120px"
                 fontSize="16px"
                 _focus={{ borderColor: "#FBB420", boxShadow: "none" }}
               />

@@ -53,7 +53,6 @@ const SubmitAppPage = () => {
     feedbackRequested: "",
     platforms: [] as string[],
     videoUrl: "",
-    initialPrompt: "",
     githubUrl: "",
   });
   const [logoFile, setLogoFile] = useState<File | null>(null);
@@ -357,24 +356,6 @@ const SubmitAppPage = () => {
                 borderColor="rgba(0,0,0,0.2)"
                 borderRadius="0"
                 h="44px"
-                fontSize="16px"
-                _focus={{ borderColor: "#FBB420", boxShadow: "none" }}
-              />
-            </FormControl>
-
-            <FormControl>
-              <FormLabel fontFamily="EB Garamond" fontSize="16px" fontWeight="700" mb={2}>
-                Initial prompt
-              </FormLabel>
-              <Textarea
-                name="initialPrompt"
-                value={formData.initialPrompt}
-                onChange={handleInputChange}
-                bg="white"
-                border="1px solid"
-                borderColor="rgba(0,0,0,0.2)"
-                borderRadius="0"
-                minH="120px"
                 fontSize="16px"
                 _focus={{ borderColor: "#FBB420", boxShadow: "none" }}
               />

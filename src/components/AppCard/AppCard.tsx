@@ -12,7 +12,6 @@ interface AppCardProps {
   feedbackRequested: string;
   platforms: string;
   videoUrl: string | null;
-  initialPrompt: string | null;
   githubUrl: string | null;
   userDiscordUsername: string | null;
   userDiscordAvatar: string | null;
@@ -27,7 +26,6 @@ const AppCard = ({
   feedbackRequested,
   platforms,
   videoUrl,
-  initialPrompt,
   githubUrl,
   userDiscordUsername,
   userDiscordAvatar,
@@ -147,29 +145,6 @@ const AppCard = ({
           >
             {feedbackRequested}
           </Text>
-
-          {initialPrompt && (
-            <>
-              <Text
-                fontSize="14px"
-                fontFamily="EB Garamond"
-                color="#767676"
-                fontWeight="700"
-                mt={2}
-              >
-                Initial prompt:
-              </Text>
-              <Text
-                fontSize="14px"
-                fontFamily="EB Garamond"
-                color="#767676"
-                whiteSpace="pre-wrap"
-                noOfLines={5}
-              >
-                {initialPrompt}
-              </Text>
-            </>
-          )}
 
           <HStack justify="space-between" mt={2} flexWrap="wrap" gap={2}>
             <HStack spacing={2}>
