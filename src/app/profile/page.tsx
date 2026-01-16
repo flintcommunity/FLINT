@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 interface UserData {
   email: string;
   discordUsername: string;
+  discordAvatar: string | null;
 }
 
 const DashboardPage = () => {
@@ -83,6 +84,30 @@ const DashboardPage = () => {
 
           {user && (
             <VStack spacing={4} w="100%" maxW="400px" bg="white" p={6} borderRadius="0" border="1px solid rgba(0,0,0,0.1)">
+              {user.discordAvatar ? (
+                <Image
+                  src={user.discordAvatar}
+                  alt={user.discordUsername}
+                  boxSize="80px"
+                  borderRadius="full"
+                  objectFit="cover"
+                  border="2px solid #FBB420"
+                />
+              ) : (
+                <Box
+                  boxSize="80px"
+                  borderRadius="full"
+                  bg="#FBB420"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  <Text fontSize="32px" fontWeight="700" color="white" fontFamily="EB Garamond">
+                    {user.discordUsername.charAt(0).toUpperCase()}
+                  </Text>
+                </Box>
+              )}
+
               <Box w="100%">
                 <Text
                   fontSize="14px"

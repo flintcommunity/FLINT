@@ -51,6 +51,7 @@ export async function GET(request: NextRequest) {
         createdAt: apps.createdAt,
         userId: apps.userId,
         userDiscordUsername: users.discordUsername,
+        userDiscordAvatar: users.discordAvatar,
       })
       .from(apps)
       .leftJoin(users, eq(apps.userId, users.id))

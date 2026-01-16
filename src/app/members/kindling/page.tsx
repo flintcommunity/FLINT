@@ -28,6 +28,7 @@ interface App {
   createdAt: string;
   userId: number;
   userDiscordUsername: string | null;
+  userDiscordAvatar: string | null;
 }
 
 const KindlingPage = () => {
@@ -132,6 +133,7 @@ const KindlingPage = () => {
                     platforms={app.platforms}
                     videoUrl={app.videoUrl}
                     userDiscordUsername={app.userDiscordUsername}
+                    userDiscordAvatar={app.userDiscordAvatar}
                     createdAt={app.createdAt}
                   />
                 ))}

@@ -99,7 +99,11 @@ export async function GET(request: NextRequest) {
     }
 
     const discordUser = await userResponse.json();
-    const { id: discordId, username: discordUsername, email } = discordUser;
+    const { id: discordId, username: discordUsername, email, avatar } = discordUser;
+
+    const discordAvatar = avatar 
+      ? `https://cdn.discordapp.com/avatars/${discordId}/${avatar}.png`
+      : null;
 
     if (!email) {
       return NextResponse.redirect(`${baseUrl}/signup?error=no_email`);
@@ -112,8 +116,15 @@ export async function GET(request: NextRequest) {
         email,
         discordId,
         discordUsername,
+        discordAvatar,
       }).returning();
       user = newUser;
+    } else if (discordAvatar && user.discordAvatar !== discordAvatar) {
+      const [updatedUser] = await db.update(users)
+        .set({ discordAvatar, discordUsername })
+        .where(eq(users.discordId, discordId))
+        .returning();
+      user = updatedUser;
     }
 
     const sessionToken = randomBytes(32).toString("hex");

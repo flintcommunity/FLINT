@@ -5,6 +5,7 @@ export const users = pgTable("users", {
   email: varchar("email", { length: 255 }).notNull().unique(),
   discordId: varchar("discord_id", { length: 255 }).notNull().unique(),
   discordUsername: varchar("discord_username", { length: 255 }).notNull(),
+  discordAvatar: varchar("discord_avatar", { length: 255 }),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 

@@ -13,6 +13,7 @@ interface AppCardProps {
   platforms: string;
   videoUrl: string | null;
   userDiscordUsername: string | null;
+  userDiscordAvatar: string | null;
   createdAt: string;
 }
 
@@ -25,6 +26,7 @@ const AppCard = ({
   platforms,
   videoUrl,
   userDiscordUsername,
+  userDiscordAvatar,
   createdAt,
 }: AppCardProps) => {
   const platformList = platforms ? platforms.split(",").filter(p => p.trim()) : [];
@@ -143,9 +145,33 @@ const AppCard = ({
           </Text>
 
           <HStack justify="space-between" mt={2}>
-            <Text fontSize="12px" fontFamily="EB Garamond" color="#999">
-              by {userDiscordUsername || "Unknown"} · {formattedDate}
-            </Text>
+            <HStack spacing={2}>
+              {userDiscordAvatar ? (
+                <Image
+                  src={userDiscordAvatar}
+                  alt={userDiscordUsername || "User"}
+                  boxSize="20px"
+                  borderRadius="full"
+                  objectFit="cover"
+                />
+              ) : (
+                <Box
+                  boxSize="20px"
+                  borderRadius="full"
+                  bg="#FBB420"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  <Text fontSize="10px" fontWeight="700" color="white">
+                    {(userDiscordUsername || "U").charAt(0).toUpperCase()}
+                  </Text>
+                </Box>
+              )}
+              <Text fontSize="12px" fontFamily="EB Garamond" color="#999">
+                {userDiscordUsername || "Unknown"} · {formattedDate}
+              </Text>
+            </HStack>
             {videoUrl && (
               <Link
                 href={videoUrl}

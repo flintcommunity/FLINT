@@ -77,12 +77,24 @@ export async function GET(request: NextRequest) {
     }
 
     const discordUser = await userResponse.json();
-    const { id: discordId } = discordUser;
+    const { id: discordId, username: discordUsername, avatar } = discordUser;
 
-    const user = await db.select().from(users).where(eq(users.discordId, discordId)).then((rows: typeof users.$inferSelect[]) => rows[0]);
+    const discordAvatar = avatar 
+      ? `https://cdn.discordapp.com/avatars/${discordId}/${avatar}.png`
+      : null;
+
+    let user = await db.select().from(users).where(eq(users.discordId, discordId)).then((rows: typeof users.$inferSelect[]) => rows[0]);
 
     if (!user) {
       return NextResponse.redirect(`${baseUrl}/login?error=no_account`);
+    }
+
+    if (discordAvatar && user.discordAvatar !== discordAvatar) {
+      const [updatedUser] = await db.update(users)
+        .set({ discordAvatar, discordUsername })
+        .where(eq(users.discordId, discordId))
+        .returning();
+      user = updatedUser;
     }
 
     const sessionToken = randomBytes(32).toString("hex");
