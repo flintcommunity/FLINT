@@ -178,6 +178,7 @@ const ProfilePage = () => {
                         feedbackRequested={app.feedbackRequested}
                         platforms={app.platforms}
                         videoUrl={app.videoUrl}
+                        initialPrompt={app.initialPrompt}
                         userDiscordUsername={app.userDiscordUsername}
                         userDiscordAvatar={app.userDiscordAvatar}
                         createdAt={app.createdAt}
