@@ -72,7 +72,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const body = await request.json();
-    const { name, logoUrl, description, appUrl, feedbackRequested, platforms, videoUrl, initialPrompt } = body;
+    const { name, logoUrl, description, appUrl, feedbackRequested, platforms, videoUrl, initialPrompt, githubUrl } = body;
 
     if (!name || !description || !appUrl || !feedbackRequested) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
@@ -88,6 +88,7 @@ export async function POST(request: NextRequest) {
       platforms: Array.isArray(platforms) ? platforms.join(",") : platforms || "",
       videoUrl: videoUrl || null,
       initialPrompt: initialPrompt || null,
+      githubUrl: githubUrl || null,
     }).returning();
 
     postKindlingNotification({

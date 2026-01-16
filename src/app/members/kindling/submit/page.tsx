@@ -53,6 +53,7 @@ const SubmitAppPage = () => {
     platforms: [] as string[],
     videoUrl: "",
     initialPrompt: "",
+    githubUrl: "",
   });
   const [logoFile, setLogoFile] = useState<File | null>(null);
   const [logoPreview, setLogoPreview] = useState<string | null>(null);
@@ -373,6 +374,25 @@ const SubmitAppPage = () => {
                 borderColor="rgba(0,0,0,0.2)"
                 borderRadius="0"
                 minH="120px"
+                fontSize="16px"
+                _focus={{ borderColor: "#FBB420", boxShadow: "none" }}
+              />
+            </FormControl>
+
+            <FormControl>
+              <FormLabel fontFamily="EB Garamond" fontSize="16px" fontWeight="700" mb={2}>
+                Link to Github repo
+              </FormLabel>
+              <Input
+                name="githubUrl"
+                value={formData.githubUrl}
+                onChange={handleInputChange}
+                placeholder="https://github.com/..."
+                bg="white"
+                border="1px solid"
+                borderColor="rgba(0,0,0,0.2)"
+                borderRadius="0"
+                h="44px"
                 fontSize="16px"
                 _focus={{ borderColor: "#FBB420", boxShadow: "none" }}
               />
