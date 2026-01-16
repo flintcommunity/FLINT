@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Box, Container, VStack, Text, Image, Spinner, Heading } from "@chakra-ui/react";
+import { Box, Container, VStack, Text, Image, Spinner, Heading, HStack, Link as ChakraLink } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import AppCard from "@/components/AppCard/AppCard";
@@ -168,19 +169,34 @@ const ProfilePage = () => {
               ) : (
                 <VStack spacing={4} align="stretch">
                   {apps.map((app) => (
-                    <AppCard
-                      key={app.id}
-                      name={app.name}
-                      logoUrl={app.logoUrl}
-                      description={app.description}
-                      appUrl={app.appUrl}
-                      feedbackRequested={app.feedbackRequested}
-                      platforms={app.platforms}
-                      videoUrl={app.videoUrl}
-                      userDiscordUsername={app.userDiscordUsername}
-                      userDiscordAvatar={app.userDiscordAvatar}
-                      createdAt={app.createdAt}
-                    />
+                    <Box key={app.id} position="relative">
+                      <AppCard
+                        name={app.name}
+                        logoUrl={app.logoUrl}
+                        description={app.description}
+                        appUrl={app.appUrl}
+                        feedbackRequested={app.feedbackRequested}
+                        platforms={app.platforms}
+                        videoUrl={app.videoUrl}
+                        userDiscordUsername={app.userDiscordUsername}
+                        userDiscordAvatar={app.userDiscordAvatar}
+                        createdAt={app.createdAt}
+                      />
+                      <Link href={`/members/kindling/edit/${app.id}`} passHref legacyBehavior>
+                        <ChakraLink
+                          position="absolute"
+                          top={4}
+                          right={4}
+                          fontSize="14px"
+                          fontFamily="EB Garamond"
+                          color="#FBB420"
+                          fontWeight="600"
+                          _hover={{ textDecoration: "underline" }}
+                        >
+                          Edit
+                        </ChakraLink>
+                      </Link>
+                    </Box>
                   ))}
                 </VStack>
               )}
