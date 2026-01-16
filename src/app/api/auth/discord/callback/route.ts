@@ -118,7 +118,7 @@ export async function GET(request: NextRequest) {
       httpOnly: true,
       secure: true,
       sameSite: "lax",
-      expires: expiresAt,
+      maxAge: 90 * 24 * 60 * 60,
       path: "/",
     });
 

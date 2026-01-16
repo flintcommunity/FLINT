@@ -263,7 +263,7 @@ const SubmitAppPage = () => {
                   >
                     Upload
                   </ChakraLink>
-                  {" "}a square logo on white background. (PNG or JPG, 512x512px recommended)
+                  {" "}a square logo. (PNG or JPG, 512x512px recommended)
                 </Text>
               )}
             </FormControl>
