@@ -50,6 +50,25 @@ const IdeasPage = () => {
             >
               Share and discover project ideas from the Flint community.
             </Text>
+
+            <Box
+              bg="white"
+              border="1px solid"
+              borderColor="rgba(0,0,0,0.1)"
+              p={{ base: 6, md: 8 }}
+              w="100%"
+              maxW="600px"
+            >
+              <Text
+                fontSize={{ base: "18px", md: "20px" }}
+                fontFamily="EB Garamond"
+                color="#767676"
+                textAlign="center"
+                fontStyle="italic"
+              >
+                The Flint Community will populate this space soon.
+              </Text>
+            </Box>
           </VStack>
         </Container>
       </Box>
