@@ -1,43 +1,82 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Box, Container, VStack, Text, Image, Spinner } from "@chakra-ui/react";
-import Link from "next/link";
-import Button from "@/components/Button/Button";
+import { Box, Container, VStack, Text, Image, Spinner, Heading } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
+import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
+import AppCard from "@/components/AppCard/AppCard";
+import Button from "@/components/Button/Button";
 
-interface UserData {
-  email: string;
-  discordUsername: string;
+const membersNavItems = [
+  { label: "Field Guide", href: "/members/field-guide" },
+  { label: "Resources", href: "/members/resources" },
+  { label: "Ideas", href: "/members/ideas" },
+  { label: "Kindling", href: "/members/kindling" },
+  { label: "Firewood", href: "/firewood" }
+];
+
+interface User {
+  id: number;
+  discordUsername: string | null;
   discordAvatar: string | null;
 }
 
-const DashboardPage = () => {
-  const [user, setUser] = useState<UserData | null>(null);
-  const [loading, setLoading] = useState(true);
+interface App {
+  id: number;
+  name: string;
+  logoUrl: string | null;
+  description: string;
+  appUrl: string;
+  feedbackRequested: string;
+  platforms: string;
+  videoUrl: string | null;
+  initialPrompt: string | null;
+  createdAt: string;
+  userId: number;
+  userDiscordUsername: string | null;
+  userDiscordAvatar: string | null;
+}
+
+const ProfilePage = () => {
   const router = useRouter();
+  const [user, setUser] = useState<User | null>(null);
+  const [apps, setApps] = useState<App[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    async function checkAuth() {
+    const fetchData = async () => {
       try {
-        const response = await fetch("/api/auth/me");
-        if (response.ok) {
-          const data = await response.json();
-          if (data.authenticated) {
-            setUser(data.user);
-          } else {
-            router.push("/login");
-          }
-        } else {
+        const [authResponse, appsResponse] = await Promise.all([
+          fetch("/api/auth/me"),
+          fetch("/api/apps/my")
+        ]);
+
+        if (!authResponse.ok) {
           router.push("/login");
+          return;
+        }
+
+        const authData = await authResponse.json();
+        if (!authData.authenticated) {
+          router.push("/login");
+          return;
+        }
+        setUser(authData.user);
+
+        if (appsResponse.ok) {
+          const appsData = await appsResponse.json();
+          setApps(appsData.apps || []);
         }
       } catch (error) {
+        console.error("Failed to fetch data:", error);
         router.push("/login");
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
-    }
-    checkAuth();
+    };
+
+    fetchData();
   }, [router]);
 
   const handleLogout = async () => {
@@ -48,115 +87,124 @@ const DashboardPage = () => {
     form.submit();
   };
 
-  if (loading) {
+  if (isLoading) {
     return (
-      <Box bg="#FEF8F3" minH="100vh" display="flex" alignItems="center" justifyContent="center">
-        <Spinner size="xl" color="#FBB420" />
+      <Box bg="#FEF8F3" minH="100vh">
+        <Header navItems={membersNavItems} />
+        <Box display="flex" justifyContent="center" alignItems="center" minH="60vh">
+          <Spinner size="xl" color="#FBB420" />
+        </Box>
+        <Footer isLoggedIn />
       </Box>
     );
   }
 
   return (
-    <Box bg="#FEF8F3" minH="100vh" py={{ base: "40px", md: "60px" }} px={{ base: "20px", md: "40px" }}>
-      <Container maxW="500px">
-        <VStack spacing={{ base: 8, md: 10 }} align="center">
-          <Link href="/">
-            <Image
-              src="/assets/logo.png"
-              alt="Flint Logo"
-              h={{ base: "40px", md: "50px" }}
-              w="auto"
-              cursor="pointer"
-              _hover={{ opacity: 0.8 }}
-              transition="opacity 0.2s"
-            />
-          </Link>
+    <Box bg="#FEF8F3" minH="100vh">
+      <Header navItems={membersNavItems} />
 
-          <Text
-            fontSize={{ base: "28px", md: "36px" }}
-            fontWeight="400"
-            fontFamily="EB Garamond"
-            color="black"
-            textAlign="center"
-          >
-            You are logged into Flint
-          </Text>
+      <Box 
+        pt={{ base: "40px", md: "60px" }}
+        pb={{ base: "60px", md: "80px" }}
+        px={{ base: "20px", md: "40px" }}
+      >
+        <Container maxW="900px">
+          <VStack spacing={{ base: 6, md: 8 }} align="center">
+            {user?.discordAvatar ? (
+              <Image
+                src={user.discordAvatar}
+                alt={user.discordUsername || "Profile"}
+                boxSize={{ base: "100px", md: "120px" }}
+                borderRadius="full"
+                objectFit="cover"
+                border="3px solid"
+                borderColor="#FBB420"
+              />
+            ) : (
+              <Box
+                boxSize={{ base: "100px", md: "120px" }}
+                borderRadius="full"
+                bg="#FBB420"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+              >
+                <Text
+                  fontSize={{ base: "40px", md: "48px" }}
+                  fontWeight="700"
+                  color="white"
+                  fontFamily="EB Garamond"
+                >
+                  {(user?.discordUsername || "U").charAt(0).toUpperCase()}
+                </Text>
+              </Box>
+            )}
 
-          {user && (
-            <VStack spacing={4} w="100%" maxW="400px" bg="white" p={6} borderRadius="0" border="1px solid rgba(0,0,0,0.1)">
-              {user.discordAvatar ? (
-                <Image
-                  src={user.discordAvatar}
-                  alt={user.discordUsername}
-                  boxSize="80px"
-                  borderRadius="full"
-                  objectFit="cover"
-                  border="2px solid #FBB420"
-                />
+            <Heading
+              as="h1"
+              fontSize={{ base: "32px", sm: "40px", md: "48px" }}
+              fontWeight="500"
+              color="#000"
+              fontFamily="EB Garamond"
+              textAlign="center"
+              lineHeight="normal"
+            >
+              {user?.discordUsername || "Member"}
+            </Heading>
+
+            <Button onClick={handleLogout} px={8}>
+              Log Out
+            </Button>
+
+            <Box w="100%" pt={{ base: 4, md: 6 }}>
+              <Heading
+                as="h2"
+                fontSize={{ base: "24px", md: "28px" }}
+                fontWeight="500"
+                color="#000"
+                fontFamily="EB Garamond"
+                mb={{ base: 4, md: 6 }}
+              >
+                Apps you've shipped
+              </Heading>
+
+              {apps.length === 0 ? (
+                <Text
+                  fontSize={{ base: "16px", md: "18px" }}
+                  fontFamily="EB Garamond"
+                  color="#767676"
+                  textAlign="center"
+                  py={8}
+                >
+                  You haven't submitted any apps yet. Head over to Kindling to share what you're building!
+                </Text>
               ) : (
-                <Box
-                  boxSize="80px"
-                  borderRadius="full"
-                  bg="#FBB420"
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                >
-                  <Text fontSize="32px" fontWeight="700" color="white" fontFamily="EB Garamond">
-                    {user.discordUsername.charAt(0).toUpperCase()}
-                  </Text>
-                </Box>
+                <VStack spacing={4} align="stretch">
+                  {apps.map((app) => (
+                    <AppCard
+                      key={app.id}
+                      name={app.name}
+                      logoUrl={app.logoUrl}
+                      description={app.description}
+                      appUrl={app.appUrl}
+                      feedbackRequested={app.feedbackRequested}
+                      platforms={app.platforms}
+                      videoUrl={app.videoUrl}
+                      userDiscordUsername={app.userDiscordUsername}
+                      userDiscordAvatar={app.userDiscordAvatar}
+                      createdAt={app.createdAt}
+                    />
+                  ))}
+                </VStack>
               )}
+            </Box>
+          </VStack>
+        </Container>
+      </Box>
 
-              <Box w="100%">
-                <Text
-                  fontSize="14px"
-                  fontWeight="400"
-                  fontFamily="EB Garamond"
-                  color="#767676"
-                  mb={1}
-                >
-                  Discord Screen Name
-                </Text>
-                <Text
-                  fontSize={{ base: "18px", md: "20px" }}
-                  fontWeight="400"
-                  fontFamily="EB Garamond"
-                  color="black"
-                >
-                  {user.discordUsername}
-                </Text>
-              </Box>
-
-              <Box w="100%">
-                <Text
-                  fontSize="14px"
-                  fontWeight="400"
-                  fontFamily="EB Garamond"
-                  color="#767676"
-                  mb={1}
-                >
-                  Email Address
-                </Text>
-                <Text
-                  fontSize={{ base: "18px", md: "20px" }}
-                  fontWeight="400"
-                  fontFamily="EB Garamond"
-                  color="black"
-                >
-                  {user.email}
-                </Text>
-              </Box>
-            </VStack>
-          )}
-
-          <Button onClick={handleLogout} w="100%" maxW="200px">
-            Log Out
-          </Button>
-        </VStack>
-      </Container>
+      <Footer isLoggedIn />
     </Box>
   );
 };
 
-export default DashboardPage;
+export default ProfilePage;
