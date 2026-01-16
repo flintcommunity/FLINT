@@ -1,5 +1,4 @@
 import { Storage, File } from "@google-cloud/storage";
-import { Response } from "express";
 import { randomUUID } from "crypto";
 import {
   ObjectAclPolicy,
@@ -94,40 +93,16 @@ export class ObjectStorageService {
     return null;
   }
 
-  // Downloads an object to the response.
-  async downloadObject(file: File, res: Response, cacheTtlSec: number = 3600) {
-    try {
-      // Get file metadata
-      const [metadata] = await file.getMetadata();
-      // Get the ACL policy for the object.
-      const aclPolicy = await getObjectAclPolicy(file);
-      const isPublic = aclPolicy?.visibility === "public";
-      // Set appropriate headers
-      res.set({
-        "Content-Type": metadata.contentType || "application/octet-stream",
-        "Content-Length": metadata.size,
-        "Cache-Control": `${
-          isPublic ? "public" : "private"
-        }, max-age=${cacheTtlSec}`,
-      });
-
-      // Stream the file to the response
-      const stream = file.createReadStream();
-
-      stream.on("error", (err) => {
-        console.error("Stream error:", err);
-        if (!res.headersSent) {
-          res.status(500).json({ error: "Error streaming file" });
-        }
-      });
-
-      stream.pipe(res);
-    } catch (error) {
-      console.error("Error downloading file:", error);
-      if (!res.headersSent) {
-        res.status(500).json({ error: "Error downloading file" });
-      }
-    }
+  // Gets a signed download URL for an object.
+  async getSignedDownloadURL(file: File, ttlSec: number = 3600): Promise<string> {
+    const bucketName = file.bucket.name;
+    const objectName = file.name;
+    return signObjectURL({
+      bucketName,
+      objectName,
+      method: "GET",
+      ttlSec,
+    });
   }
 
   // Gets the upload URL for an object entity.
