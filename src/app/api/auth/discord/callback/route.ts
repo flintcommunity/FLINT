@@ -14,6 +14,18 @@ function getBaseUrl() {
   return "http://localhost:5000";
 }
 
+function getCookieDomain(): string | undefined {
+  if (process.env.PRODUCTION_URL) {
+    try {
+      const url = new URL(process.env.PRODUCTION_URL);
+      return url.hostname;
+    } catch {
+      return undefined;
+    }
+  }
+  return undefined;
+}
+
 export async function GET(request: NextRequest) {
   const baseUrl = getBaseUrl();
   const code = request.nextUrl.searchParams.get("code");
@@ -114,12 +126,14 @@ export async function GET(request: NextRequest) {
     });
 
     const response = NextResponse.redirect(`${baseUrl}/members/field-guide`);
+    const cookieDomain = getCookieDomain();
     response.cookies.set("session_token", sessionToken, {
       httpOnly: true,
       secure: true,
       sameSite: "lax",
       maxAge: 90 * 24 * 60 * 60,
       path: "/",
+      ...(cookieDomain && { domain: cookieDomain }),
     });
 
     return response;
