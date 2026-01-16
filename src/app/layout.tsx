@@ -2,6 +2,7 @@ import { Providers } from "../providers/ThemeProvider";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://flints.dev'),
   title: "Flint - Spark something.",
   description: "Flint is a community of vibecoders using new tech to build the next tech.",
   icons: {
