@@ -32,10 +32,11 @@ Preferred communication style: Simple, everyday language.
 - **Flow**: User enters invite token → validates token → Discord OAuth → creates user and session
 
 ### Database Schema
-Three main tables:
+Four main tables:
 - `users`: Stores member info (email, Discord ID, Discord username)
 - `inviteTokens`: Stores hashed invite tokens for gated access
 - `sessions`: Manages user authentication sessions with expiration
+- `apps`: Stores community app submissions for Kindling
 
 ### Route Structure
 - `/` - Public landing page with marketing content
@@ -59,6 +60,10 @@ Three main tables:
 - **Discord OAuth**: User authentication
   - Requires `DISCORD_CLIENT_ID` and `DISCORD_CLIENT_SECRET` environment variables
   - Callback URL constructed using `REPLIT_DEV_DOMAIN` or localhost
+- **Discord Bot**: Kindling notifications
+  - Posts to #kindling channel when apps are submitted
+  - Requires `DISCORD_BOT_TOKEN` and `DISCORD_KINDLING_CHANNEL_ID` environment variables
+  - Implementation: `server/discord.ts`
 
 ### Key NPM Packages
 - `drizzle-orm` / `drizzle-kit`: Database ORM and migrations

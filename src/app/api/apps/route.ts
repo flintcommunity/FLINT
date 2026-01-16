@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@server/db";
 import { apps, sessions, users } from "@shared/schema";
 import { eq, and, gt, desc } from "drizzle-orm";
+import { postKindlingNotification } from "@server/discord";
 
 async function getAuthenticatedUser(request: NextRequest) {
   const sessionToken = request.cookies.get("session_token")?.value;
@@ -88,6 +89,15 @@ export async function POST(request: NextRequest) {
       videoUrl: videoUrl || null,
       initialPrompt: initialPrompt || null,
     }).returning();
+
+    postKindlingNotification({
+      name,
+      description,
+      appUrl,
+      feedbackRequested,
+      creatorDiscordId: user.discordId,
+      creatorDiscordUsername: user.discordUsername,
+    }).catch((err) => console.error("Discord notification failed:", err));
 
     return NextResponse.json({ app: newApp });
   } catch (error) {
