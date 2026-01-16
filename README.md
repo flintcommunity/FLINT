@@ -2,18 +2,8 @@
 
 Flint is a community of vibecoders using new tech to build the next tech.
 
-## Getting Started
+Learn more at our [website](https://flints.dev).
 
-```bash
-npm install
-npm run dev
-```
+Apply to join the community [here](https://tally.so/r/NpXJaW).
 
-Open [http://localhost:3000](http://localhost:3000)
-
-## Tech Stack
-
-- Next.js 15
-- TypeScript
-- Chakra UI
-- React Icons
+This site code is open source and shared using an MIT license.
