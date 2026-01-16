@@ -60,13 +60,26 @@ const Footer = ({ isLoggedIn = false }: FooterProps) => {
                     </Text>
 
                     {isLoggedIn ? (
-                        <Button
-                            onClick={handleLogout}
-                            w={{ base: "200px", md: "220px" }}
-                            h="48px"
-                        >
-                            Log out
-                        </Button>
+                        <VStack spacing={3}>
+                            <Button
+                                onClick={handleLogout}
+                                w={{ base: "200px", md: "220px" }}
+                                h="48px"
+                            >
+                                Log out
+                            </Button>
+                            <Link
+                                as={NextLink}
+                                href="/profile"
+                                fontSize={{ base: "14px", md: "16px" }}
+                                fontFamily="EB Garamond"
+                                color="#767676"
+                                textDecoration="underline"
+                                _hover={{ color: "black" }}
+                            >
+                                Your Flint Profile
+                            </Link>
+                        </VStack>
                     ) : (
                         <Button
                             as={NextLink}
