@@ -39,6 +39,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       authenticated: true,
       user: {
+        id: user.id,
         email: user.email,
         discordUsername: user.discordUsername,
         discordAvatar: user.discordAvatar,
