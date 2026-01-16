@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import AppCard from "@/components/AppCard/AppCard";
-import Button from "@/components/Button/Button";
 
 const membersNavItems = [
   { label: "Field Guide", href: "/members/field-guide" },
@@ -79,14 +78,6 @@ const ProfilePage = () => {
     fetchData();
   }, [router]);
 
-  const handleLogout = async () => {
-    const form = document.createElement("form");
-    form.method = "POST";
-    form.action = "/api/auth/logout";
-    document.body.appendChild(form);
-    form.submit();
-  };
-
   if (isLoading) {
     return (
       <Box bg="#FEF8F3" minH="100vh">
@@ -142,7 +133,7 @@ const ProfilePage = () => {
 
             <Heading
               as="h1"
-              fontSize={{ base: "32px", sm: "40px", md: "48px" }}
+              fontSize={{ base: "24px", sm: "28px", md: "32px" }}
               fontWeight="500"
               color="#000"
               fontFamily="EB Garamond"
@@ -152,11 +143,7 @@ const ProfilePage = () => {
               {user?.discordUsername || "Member"}
             </Heading>
 
-            <Button onClick={handleLogout} px={8}>
-              Log Out
-            </Button>
-
-            <Box w="100%" pt={{ base: 4, md: 6 }}>
+            <Box w="100%" pt={{ base: 2, md: 4 }}>
               <Heading
                 as="h2"
                 fontSize={{ base: "24px", md: "28px" }}
