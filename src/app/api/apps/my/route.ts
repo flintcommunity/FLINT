@@ -37,6 +37,7 @@ export async function GET(request: NextRequest) {
         platforms: apps.platforms,
         videoUrl: apps.videoUrl,
         initialPrompt: apps.initialPrompt,
+        githubUrl: apps.githubUrl,
         createdAt: apps.createdAt,
         userId: apps.userId,
       })

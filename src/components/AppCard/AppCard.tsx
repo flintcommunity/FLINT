@@ -13,6 +13,7 @@ interface AppCardProps {
   platforms: string;
   videoUrl: string | null;
   initialPrompt: string | null;
+  githubUrl: string | null;
   userDiscordUsername: string | null;
   userDiscordAvatar: string | null;
   createdAt: string;
@@ -27,6 +28,7 @@ const AppCard = ({
   platforms,
   videoUrl,
   initialPrompt,
+  githubUrl,
   userDiscordUsername,
   userDiscordAvatar,
   createdAt,
@@ -169,7 +171,7 @@ const AppCard = ({
             </>
           )}
 
-          <HStack justify="space-between" mt={2}>
+          <HStack justify="space-between" mt={2} flexWrap="wrap" gap={2}>
             <HStack spacing={2}>
               {userDiscordAvatar ? (
                 <Image
@@ -197,18 +199,32 @@ const AppCard = ({
                 {userDiscordUsername || "Unknown"} · {formattedDate}
               </Text>
             </HStack>
-            {videoUrl && (
-              <Link
-                href={videoUrl}
-                isExternal
-                fontSize="12px"
-                fontFamily="EB Garamond"
-                color="#FBB420"
-                textDecoration="underline"
-              >
-                Watch walkthrough
-              </Link>
-            )}
+            <HStack spacing={3}>
+              {videoUrl && (
+                <Link
+                  href={videoUrl}
+                  isExternal
+                  fontSize="12px"
+                  fontFamily="EB Garamond"
+                  color="#FBB420"
+                  textDecoration="underline"
+                >
+                  Watch walkthrough
+                </Link>
+              )}
+              {githubUrl && (
+                <Link
+                  href={githubUrl}
+                  isExternal
+                  fontSize="12px"
+                  fontFamily="EB Garamond"
+                  color="#FBB420"
+                  textDecoration="underline"
+                >
+                  View on GitHub
+                </Link>
+              )}
+            </HStack>
           </HStack>
         </VStack>
       </HStack>

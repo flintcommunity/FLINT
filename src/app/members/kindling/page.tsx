@@ -26,6 +26,7 @@ interface App {
   platforms: string;
   videoUrl: string | null;
   initialPrompt: string | null;
+  githubUrl: string | null;
   createdAt: string;
   userId: number;
   userDiscordUsername: string | null;
@@ -134,6 +135,7 @@ const KindlingPage = () => {
                     platforms={app.platforms}
                     videoUrl={app.videoUrl}
                     initialPrompt={app.initialPrompt}
+                    githubUrl={app.githubUrl}
                     userDiscordUsername={app.userDiscordUsername}
                     userDiscordAvatar={app.userDiscordAvatar}
                     createdAt={app.createdAt}
