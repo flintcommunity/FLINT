@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Box, Container, VStack, Text, Image, Heading, Spinner } from "@chakra-ui/react";
-import Header from "@/components/Header/Header";
+import { Box, Container, VStack, Text, Image, Heading, Spinner, Link as ChakraLink } from "@chakra-ui/react";
+import Link from "next/link";
 import Footer from "@/components/Footer/Footer";
 import FirewoodAppCard from "@/components/FirewoodAppCard/FirewoodAppCard";
 
@@ -39,15 +39,24 @@ const FirewoodPage = () => {
 
   return (
     <Box bg="#FEF8F3" minH="100vh">
-      <Header />
-
       <Box 
-        pt={{ base: "40px", md: "60px" }}
+        pt={{ base: "30px", md: "40px" }}
         pb={{ base: "60px", md: "80px" }}
         px={{ base: "20px", md: "40px" }}
       >
         <Container maxW="900px">
           <VStack spacing={{ base: 6, md: 8 }} align="center">
+            <Link href="/" passHref legacyBehavior>
+              <ChakraLink _hover={{ opacity: 0.8 }} transition="opacity 0.2s">
+                <Image
+                  src="/assets/logo.png"
+                  alt="Flint Logo"
+                  h={{ base: "40px", md: "65px" }}
+                  w="auto"
+                />
+              </ChakraLink>
+            </Link>
+
             <Heading
               as="h1"
               fontSize={{ base: "40px", sm: "48px", md: "64px" }}
