@@ -30,6 +30,7 @@ const membersNavItems = [
   { label: "Resources", href: "/members/resources" },
   { label: "Ideas", href: "/members/ideas" },
   { label: "Kindling", href: "/members/kindling" },
+  { label: "Firewood", href: "/firewood" }
 ];
 
 const platformOptions = [
