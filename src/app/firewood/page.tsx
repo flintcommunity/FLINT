@@ -24,8 +24,17 @@ interface FirewoodApp {
   platforms: string;
 }
 
+const abendrotApp: FirewoodApp = {
+  id: 0,
+  name: "Abendrot",
+  logoUrl: "https://abendrot.app/icon-256.png",
+  description: "A free, open-source macOS menu-bar app that warms built-in and external displays around local sunset, with a Reveal True Color shortcut and no telemetry.",
+  appUrl: "https://abendrot.app/",
+  platforms: "MacOS",
+};
+
 const FirewoodPage = () => {
-  const [apps, setApps] = useState<FirewoodApp[]>([]);
+  const [apps, setApps] = useState<FirewoodApp[]>([abendrotApp]);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -39,7 +48,7 @@ const FirewoodPage = () => {
 
         if (appsResponse.ok) {
           const data = await appsResponse.json();
-          setApps(data.apps || []);
+          setApps([abendrotApp, ...(data.apps || []).filter((app: FirewoodApp) => app.appUrl !== abendrotApp.appUrl)]);
         }
 
         if (authResponse.ok) {
